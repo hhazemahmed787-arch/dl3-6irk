@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="copyright" content="© Hazem Ahmed 2026 — جميع الحقوق محفوظة">
+<meta name="author" content="حازم أحمد">
+<title>دلع طيرك — اعرف طيرك… واهتم بيه صح | © حازم أحمد 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F3E8; --surface:#FFFDF7; --card:#FFFFFF; --ink:#26331F; --muted:#66755B;
+  --line:#E4DBC4; --green:#2F5D3A; --green-2:#3E7C4F; --accent:#E8833A; --amber:#DB9A2E;
+  --red:#B6482F; --shadow:0 10px 30px rgba(60,70,40,.10);
+}
+[data-theme="dark"]{
+  --bg:#131A14; --surface:#1A231B; --card:#1F2A20; --ink:#EDE7D4; --muted:#9DAA8F;
+  --line:#2B382C; --green:#7FBF8E; --green-2:#5E9E6E; --accent:#F09A50; --amber:#E0AC4C;
+  --red:#D06A50; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.disp{font-family:'Baloo Bhaijaan 2','IBM Plex Sans Arabic',sans-serif;line-height:1.35}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
+.sec{padding-block:34px}
+.ic{vertical-align:-3px}
+::selection{background:var(--accent);color:#fff}
+
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line);
+  background:var(--bg);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(12px)}
+.hd{display:flex;align-items:center;gap:14px;height:64px}
+.brand{display:flex;align-items:center;gap:9px;font-family:'Baloo Bhaijaan 2';font-weight:800;font-size:1.35rem;color:var(--green)}
+.brand .logo-b{width:40px;height:34px;overflow:visible}
+nav.main{display:flex;gap:4px;margin-inline-start:12px}
+nav.main a{padding:7px 14px;border-radius:999px;font-weight:600;font-size:.95rem;color:var(--muted);transition:.2s}
+nav.main a:hover{color:var(--ink);background:var(--card)}
+nav.main a.on{color:#fff;background:var(--green-2)}
+.hd-tools{margin-inline-start:auto;display:flex;gap:8px;align-items:center}
+.tbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;border:1px solid var(--line);background:var(--card);color:var(--ink);transition:.2s}
+.tbtn:hover{transform:translateY(-2px);border-color:var(--green-2)}
+#menuBtn{display:none}
+#mobileNav{display:none;flex-direction:column;gap:2px;padding:8px 20px 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+#mobileNav a{padding:10px 12px;border-radius:12px;font-weight:600}
+#mobileNav a.on{background:var(--green-2);color:#fff}
+@media(max-width:820px){nav.main{display:none}#menuBtn{display:grid}}
+
+/* ===== Animations ===== */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes flap{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-13deg)}}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.stagger>*{animation:rise .55s cubic-bezier(.22,.7,.3,1) both}
+.stagger>*:nth-child(2){animation-delay:.07s}.stagger>*:nth-child(3){animation-delay:.14s}
+.stagger>*:nth-child(4){animation-delay:.21s}.stagger>*:nth-child(5){animation-delay:.28s}
+.stagger>*:nth-child(6){animation-delay:.35s}.stagger>*:nth-child(7){animation-delay:.42s}
+.stagger>*:nth-child(8){animation-delay:.49s}.stagger>*:nth-child(9){animation-delay:.56s}
+.stagger>*:nth-child(10){animation-delay:.63s}
+.anim{animation:rise .6s cubic-bezier(.22,.7,.3,1) both}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Hero ===== */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center;padding-block:56px 40px;min-height:430px}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 16px;font-size:.85rem;font-weight:600;color:var(--green-2)}
+.hero h1{font-size:clamp(2.6rem,6vw,4.3rem);font-weight:800;color:var(--green);margin:16px 0 4px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero h1 .logo-b{width:clamp(70px,9vw,105px);overflow:visible;flex:none}
+.tagline{font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:600;font-family:'Baloo Bhaijaan 2';color:var(--accent);display:flex;align-items:center;gap:9px}
+.hero p.sub{color:var(--muted);max-width:46ch;margin-top:12px}
+.hero-cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.hero-art{justify-self:center;text-align:center}
+.hero-art svg{width:min(340px,80vw);overflow:visible;animation:bob 4.5s ease-in-out infinite}
+.hero-art .leaf{transform-box:fill-box;transform-origin:20% 20%;animation:sway 5s ease-in-out infinite}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--green-2);color:#fff;font-weight:700;padding:12px 24px;border-radius:14px;font-size:1rem;transition:.2s;box-shadow:var(--shadow)}
+.btn:hover{transform:translateY(-3px);background:var(--green)}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--green-2)}
+.btn.warn{background:var(--amber)}
+.btn.warn:hover{background:var(--red)}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-block:34px 24px;text-align:center}
+.hero h1{justify-content:center}.tagline{justify-content:center}.hero-cta,.hero p.sub{justify-content:center;margin-inline:auto}}
+
+/* ===== Duo cards ===== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.duo-card{display:flex;align-items:center;gap:22px;text-align:start;padding:26px;border-radius:24px;transition:.25s;border:1px solid var(--line);box-shadow:var(--shadow)}
+.duo-card:hover{transform:translateY(-5px)}
+.duo-card .arts{flex:none;width:132px;display:grid;grid-template-columns:1fr 1fr;gap:0}
+.duo-card .arts svg{width:100%;overflow:visible}
+.duo-card h2{font-size:1.6rem;margin-bottom:2px}
+.duo-card p{font-size:.92rem;opacity:.85}
+.duo-card .go{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-weight:700;font-size:.9rem}
+.duo-card:hover .go svg{transform:translateX(-5px)}
+.duo-card .go svg{transition:.25s}
+.duo.pets-c{background:color-mix(in srgb,#EAF2DF 62%,var(--card));color:var(--ink)}
+.duo.pets-c .go{color:var(--green-2)}
+.duo.rap-c{background:#22301F;color:#F2EDDD;border-color:#31452C}
+[data-theme="dark"] .duo.rap-c{background:#1B2618}
+.duo.rap-c .go{color:#E8B45A}
+@media(max-width:720px){.duo{grid-template-columns:1fr}.duo-card{padding:20px}.duo-card .arts{width:100px}}
+
+/* ===== How it works ===== */
+.how h2{text-align:center;font-size:1.7rem;color:var(--green)}
+.steps3{list-style:none;display:flex;justify-content:center;gap:0;margin-top:34px;counter-reset:s}
+.steps3 li{position:relative;flex:1;max-width:300px;padding:0 18px;text-align:center}
+.steps3 li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;border-radius:50%;background:var(--card);border:2px solid var(--green-2);color:var(--green-2);font-family:'Baloo Bhaijaan 2';font-weight:800;font-size:1.5rem;position:relative;z-index:1}
+.steps3 li:not(:last-child)::after{content:"";position:absolute;top:29px;left:-50%;width:100%;border-top:2px dashed var(--line);z-index:0}
+.steps3 b{display:block;font-family:'Baloo Bhaijaan 2';font-size:1.05rem}
+.steps3 span{font-size:.87rem;color:var(--muted)}
+@media(max-width:640px){.steps3{flex-direction:column;gap:22px;align-items:center}.steps3 li::after{display:none}}
+.notice{margin-top:44px;display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:16px;background:color-mix(in srgb,var(--amber) 12%,var(--card));border:1px solid color-mix(in srgb,var(--amber) 45%,var(--line))}
+.notice b{color:var(--amber)}
+.notice .btn{margin-inline-start:auto;flex:none}
+@media(max-width:640px){.notice{flex-direction:column;text-align:center}.notice .btn{margin:0}}
+
+/* ===== Category page ===== */
+.page-head{display:flex;align-items:end;gap:16px;flex-wrap:wrap;padding-block:38px 8px}
+.page-head h1{font-size:clamp(1.9rem,4vw,2.6rem);color:var(--green)}
+.page-head p{color:var(--muted)}
+.searchbar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 16px;min-width:250px;flex:1;max-width:340px;margin-inline-start:auto}
+.searchbar input{border:none;outline:none;background:none;font-family:inherit;font-size:.95rem;color:var(--ink);width:100%}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:18px;padding-block:20px 50px}
+.bcard{position:relative;text-align:start;border-radius:22px;border:1px solid var(--line);border-block-end:6px solid var(--a);padding:20px;display:flex;flex-direction:column;gap:6px;transition:.25s;background:var(--card)}
+@supports(color:color-mix(in srgb,red,blue)){.bcard{background:color-mix(in srgb,var(--b) 38%,var(--card))}}
+.bcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.bcard.pop{grid-column:span 2}
+.bcard.pop .bwrap{flex-direction:row;align-items:center}
+.bwrap{display:flex;flex-direction:column;gap:12px;flex:1}
+.bmedal{width:110px;height:96px;border-radius:18px;background:color-mix(in srgb,var(--b) 55%,#fff);display:grid;place-items:center;overflow:hidden}
+[data-theme="dark"] .bmedal{background:color-mix(in srgb,var(--b) 20%,#141a15)}
+.bmedal svg{width:96px;overflow:visible}
+.bcard h3{font-size:1.3rem;display:flex;align-items:center;gap:8px}
+.bcard h3 .my{color:var(--amber);display:inline-grid}
+.bcard p{font-size:.85rem;color:var(--muted);flex:1}
+.bcard .opn{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.85rem;color:var(--a)}
+.bcard:hover .opn svg{transform:translateX(-4px)}
+.bcard .opn svg{transition:.25s}
+.bcard.soon{border-style:dashed;border-block-end-width:1px;background:var(--card);align-items:center;justify-content:center;color:var(--muted)}
+.bcard.soon:hover{transform:none;box-shadow:none}
+@media(max-width:560px){.bcard.pop{grid-column:span 1}}
+
+/* ===== Bird page ===== */
+.raptor-banner{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-radius:16px;background:color-mix(in srgb,var(--red) 10%,var(--card));border:1px solid color-mix(in srgb,var(--red) 40%,var(--line));margin-block:26px 0;color:var(--ink)}
+.raptor-banner svg{flex:none;color:var(--red);margin-top:3px}
+.bird-hero{margin-top:26px;border-radius:28px;padding:34px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:color-mix(in srgb,var(--b) 30%,var(--card));border:1px solid var(--line);position:relative;overflow:hidden}
+.bird-hero .deco{position:absolute;inset-inline-start:-40px;bottom:-60px;width:190px;opacity:.12;transform:rotate(12deg)}
+.bird-hero .info{position:relative;z-index:1}
+.cat-chip{display:inline-flex;align-items:center;gap:7px;background:color-mix(in srgb,var(--a) 16%,var(--card));color:var(--a);border:1px solid color-mix(in srgb,var(--a) 40%,transparent);padding:5px 14px;border-radius:999px;font-size:.8rem;font-weight:700}
+.bird-hero h1{font-size:clamp(2rem,4.5vw,3rem);color:var(--green);margin:10px 0 6px}
+.bird-hero .desc{max-width:56ch;color:var(--muted)}
+.bird-hero .arts{position:relative;z-index:1;width:min(240px,60vw)}
+.bird-hero .arts svg{width:100%;overflow:visible;filter:drop-shadow(0 14px 18px rgba(0,0,0,.12))}
+.mybtn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:9px 18px;border-radius:12px;border:1.5px solid var(--amber);color:var(--amber);font-weight:700;background:transparent;transition:.2s}
+.mybtn.on{background:var(--amber);color:#fff}
+.backrow{display:flex;align-items:center;gap:10px;margin-top:22px}
+.backbtn{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-weight:600;padding:8px 14px;border-radius:12px;transition:.2s}
+.backbtn:hover{color:var(--ink);background:var(--card)}
+@media(max-width:720px){.bird-hero{grid-template-columns:1fr;text-align:center;padding:24px}.bird-hero .arts{margin:0 auto}.bird-hero h1{justify-content:center}.bird-hero .desc{margin-inline:auto}}
+
+/* ===== Quiz ===== */
+.quiz{margin-top:22px;border-radius:22px;border:1px solid var(--line);background:var(--card);padding:24px}
+.quiz h2{font-size:1.35rem;color:var(--green);display:flex;align-items:center;gap:10px}
+.quiz .hint{color:var(--muted);font-size:.88rem;margin-top:2px}
+.qrow{margin-top:16px}
+.qrow label{font-weight:700;font-size:.92rem;display:block;margin-bottom:9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);font-weight:600;font-size:.88rem;transition:.15s;color:var(--ink)}
+.chip:hover{border-color:var(--green-2)}
+.chip.sel{background:var(--green-2);border-color:var(--green-2);color:#fff}
+.qout{margin-top:18px;border-radius:16px;padding:16px 18px;border-inline-start:5px solid var(--muted);background:var(--surface);animation:rise .4s both}
+.qout.good{border-color:#5FA36B}.qout.warn{border-color:var(--red)}.qout.info{border-color:var(--amber)}
+.qout b{font-size:1.05rem}
+.qout.good b{color:#4E9159}.qout.warn b{color:var(--red)}.qout.info b{color:var(--amber)}
+.vet-note{margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--muted);background:color-mix(in srgb,var(--amber) 10%,var(--surface));border:1px dashed color-mix(in srgb,var(--amber) 50%,var(--line));padding:12px 14px;border-radius:12px}
+.vet-note svg{flex:none;color:var(--amber);margin-top:3px}
+
+/* ===== Tabs ===== */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-block:26px 16px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:700;font-size:.9rem;color:var(--muted);transition:.2s}
+.tab:hover{color:var(--ink)}
+.tab.on{background:var(--green-2);border-color:var(--green-2);color:#fff}
+.tabbody{padding-bottom:60px;animation:rise .4s both}
+.tabbody h3.sect{font-size:1.15rem;color:var(--green);margin:26px 0 10px;display:flex;align-items:center;gap:9px}
+.tabbody h3.sect:first-child{margin-top:0}
+.lead{color:var(--muted);max-width:70ch}
+ul.pts{list-style:none;margin-top:10px;display:grid;gap:9px}
+ul.pts li{display:flex;gap:11px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-size:.93rem}
+ul.pts li svg{flex:none;color:var(--green-2);margin-top:4px}
+ul.pts li.bad svg{color:var(--red)}
+ul.pts li b.t{display:block}
+ul.pts li span.d{color:var(--muted);font-size:.88rem}
+.warnbox{margin-top:20px;border-radius:16px;background:color-mix(in srgb,var(--red) 8%,var(--card));border:1px solid color-mix(in srgb,var(--red) 35%,var(--line));padding:18px 20px}
+.warnbox h4{display:flex;align-items:center;gap:9px;color:var(--red);font-family:'Baloo Bhaijaan 2';font-size:1.05rem;margin-bottom:8px}
+.warnbox ul{list-style:none;display:grid;gap:8px}
+.warnbox li{display:flex;gap:9px;font-size:.9rem}
+.warnbox li svg{flex:none;color:var(--red);margin-top:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+@media(max-width:680px){.two{grid-template-columns:1fr}}
+.sign-col{border-radius:16px;border:1px solid var(--line);padding:16px 18px;background:var(--card)}
+.sign-col h4{font-size:1rem;margin-bottom:10px;display:flex;gap:8px;align-items:center}
+.sign-col.chick h4{color:var(--amber)}.sign-col.weaned h4{color:var(--green-2)}
+.sign-col ul{list-style:none;display:grid;gap:8px}
+.sign-col li{display:flex;gap:9px;font-size:.88rem;color:var(--muted)}
+.sign-col li svg{flex:none;margin-top:4px}
+.stagerow{display:flex;gap:12px;align-items:flex-start;padding:13px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);margin-top:9px}
+.stagerow .st{flex:none;font-weight:800;font-family:'Baloo Bhaijaan 2';font-size:.85rem;padding:4px 13px;border-radius:999px;color:#fff}
+.stagerow p{font-size:.9rem;color:var(--muted)}
+
+/* Taming steps */
+.prog{margin:14px 0 6px}
+.prog .bar{height:10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+.prog .fill{height:100%;background:var(--green-2);border-radius:99px;transition:width .5s cubic-bezier(.3,.9,.3,1)}
+.prog .lbl{font-size:.82rem;color:var(--muted);margin-top:6px;display:flex;justify-content:space-between}
+.steps-list{list-style:none;margin-top:12px;display:grid;gap:10px;counter-reset:st}
+.steps-list li{counter-increment:st;display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:.2s;user-select:none}
+.steps-list li:hover{border-color:var(--green-2)}
+.steps-list li::before{content:counter(st);flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:2px solid var(--line);font-family:'Baloo Bhaijaan 2';font-weight:800;transition:.2s}
+.steps-list li.done{border-color:var(--green-2);background:color-mix(in srgb,var(--green-2) 8%,var(--card))}
+.steps-list li.done::before{content:"✓";background:var(--green-2);border-color:var(--green-2);color:#fff;animation:pop .35s both}
+.steps-list li.done .stx{opacity:.55;text-decoration:line-through;text-decoration-color:var(--green-2);text-decoration-thickness:2px}
+.steps-list .stx{flex:1;font-size:.93rem;padding-top:3px}
+.reset-steps{margin-top:12px;font-size:.83rem;color:var(--muted);display:inline-flex;gap:6px;align-items:center}
+.reset-steps:hover{color:var(--red)}
+
+/* Behavior */
+.sig{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:10px}
+.sig .ic-w{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center}
+.sig.good .ic-w{background:color-mix(in srgb,#5FA36B 16%,transparent);color:#4E9159}
+.sig.warn .ic-w{background:color-mix(in srgb,var(--red) 12%,transparent);color:var(--red)}
+.sig.info .ic-w{background:color-mix(in srgb,var(--amber) 15%,transparent);color:var(--amber)}
+.sig b{display:block}
+.sig span{color:var(--muted);font-size:.88rem}
+
+/* Training timeline */
+.timeline{list-style:none;margin-top:14px;position:relative;display:grid;gap:0}
+.timeline::before{content:"";position:absolute;top:10px;bottom:10px;inset-inline-start:19px;border-inline-start:2px dashed var(--line)}
+.timeline li{position:relative;padding:0 0 22px 0;padding-inline-start:58px}
+.timeline li:last-child{padding-bottom:0}
+.timeline .num{position:absolute;inset-inline-start:0;top:0;width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--green-2);color:var(--green-2);display:grid;place-items:center;font-family:'Baloo Bhaijaan 2';font-weight:800}
+.timeline b{display:block;font-family:'Baloo Bhaijaan 2';font-size:1.02rem}
+.timeline span{font-size:.9rem;color:var(--muted)}
+.switcher{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;padding-top:20px;border-top:1px dashed var(--line)}
+.switcher .chip.sel{background:var(--green-2);color:#fff;border-color:var(--green-2)}
+
+/* ===== Assistant ===== */
+#fab{position:fixed;bottom:22px;inset-inline-start:22px;z-index:80;width:64px;height:64px;border-radius:50%;background:var(--card);border:2px solid var(--green-2);box-shadow:var(--shadow);display:grid;place-items:center;transition:.25s}
+#fab:hover{transform:translateY(-4px) scale(1.05)}
+#fab svg{width:46px;overflow:visible}
+#fab .dot{position:absolute;top:2px;inset-inline-start:2px;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+#asst{position:fixed;bottom:0;inset-inline-start:0;z-index:90;width:min(400px,100vw);height:min(600px,88vh);background:var(--surface);border:1px solid var(--line);border-radius:24px 24px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;transform:translateY(110%);transition:transform .4s cubic-bezier(.25,.9,.3,1)}
+#asst.open{transform:none}
+.asst-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.asst-hd .av{width:44px;height:44px;border-radius:50%;background:color-mix(in srgb,#F5CE4A 30%,var(--card));display:grid;place-items:center;overflow:hidden}
+.asst-hd .av svg{width:38px;overflow:visible}
+.asst-hd b{font-family:'Baloo Bhaijaan 2';font-size:1.05rem;display:block}
+.asst-hd small{color:var(--muted);display:flex;align-items:center;gap:5px;font-size:.75rem}
+.asst-hd small::before{content:"";width:8px;height:8px;border-radius:50%;background:#5FA36B}
+.asst-hd .tools{margin-inline-start:auto;display:flex;gap:4px}
+.asst-hd .tools button{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--muted)}
+.asst-hd .tools button:hover{background:var(--card);color:var(--ink)}
+#asstMsgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:11px 15px;border-radius:16px;font-size:.9rem;animation:rise .3s both;white-space:normal}
+.msg.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-start-start-radius:4px}
+.msg.me{align-self:flex-end;background:var(--green-2);color:#fff;border-start-end-radius:4px}
+.msg.typing{display:flex;gap:5px;padding:14px 18px}
+.msg.typing span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.msg.typing span:nth-child(2){animation-delay:.18s}.msg.typing span:nth-child(3){animation-delay:.36s}
+@keyframes blink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+#asstChips{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 10px}
+#asstChips:empty{display:none}
+#asstChips .chip{font-size:.82rem;padding:7px 13px}
+.asst-form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.asst-form input{flex:1;border:1.5px solid var(--line);background:var(--card);border-radius:13px;padding:11px 15px;font-family:inherit;font-size:.9rem;color:var(--ink);outline:none}
+.asst-form input:focus{border-color:var(--green-2)}
+.asst-form button{width:46px;border-radius:13px;background:var(--green-2);color:#fff;display:grid;place-items:center;transition:.2s}
+.asst-form button:hover{background:var(--green)}
+.msg .btn{padding:8px 16px;font-size:.83rem;margin-top:10px;margin-inline-end:6px}
+
+/* ===== Search overlay ===== */
+#searchOv{position:fixed;inset:0;z-index:100;background:rgba(20,25,15,.45);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding:90px 20px 20px}
+#searchOv.open{display:flex}
+.search-panel{width:min(560px,100%);background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:rise .3s both}
+.search-panel .searchbar{margin:0;max-width:none;border:none;border-bottom:1px solid var(--line);border-radius:0;padding:16px 20px}
+#searchRes{max-height:50vh;overflow-y:auto;padding:8px}
+.sres{display:flex;align-items:center;gap:14px;width:100%;text-align:start;padding:10px 14px;border-radius:14px;transition:.15s}
+.sres:hover{background:var(--card)}
+.sres svg{width:52px;overflow:visible;flex:none}
+.sres b{font-family:'Baloo Bhaijaan 2';display:block}
+.sres small{color:var(--muted);font-size:.78rem}
+.sres .cat-tag{margin-inline-start:auto;font-size:.72rem;font-weight:700;color:var(--green-2);background:color-mix(in srgb,var(--green-2) 12%,transparent);padding:3px 11px;border-radius:99px}
+.sres .cat-tag.r{color:var(--amber);background:color-mix(in srgb,var(--amber) 14%,transparent)}
+.snone{padding:26px;text-align:center;color:var(--muted);font-size:.9rem}
+
+/* ===== Toast / footer ===== */
+#toasts{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:120;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:var(--ink);color:var(--bg);padding:11px 22px;border-radius:99px;font-size:.88rem;font-weight:600;box-shadow:var(--shadow);animation:rise .3s both;display:flex;gap:9px;align-items:center}
+footer{border-top:1px solid var(--line);padding:26px 20px 90px;text-align:center;color:var(--muted);font-size:.83rem}
+footer b{font-family:'Baloo Bhaijaan 2';color:var(--green)}
+footer .copy{margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);
+  font-size:.82rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+footer .copy .c-sym{width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;
+  background:var(--green-2);color:#fff;font-size:.72rem;font-weight:700}
+footer .copy b{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <button class="tbtn" id="menuBtn" aria-label="القائمة"></button>
+    <a href="#/" class="brand" aria-label="دلع طيرك — الرئيسية"><span class="logo-b" id="logoSlot"></span>دلع طيرك</a>
+    <nav class="main" id="mainNav">
+      <a href="#/" data-nav="home">الرئيسية</a>
+      <a href="#/cat/pets" data-nav="pets">الطيور الأليفة</a>
+      <a href="#/cat/raptors" data-nav="raptors">الجوارح</a>
+      <a href="#/train" data-nav="train">تدريب طيرك</a>
+    </nav>
+    <div class="hd-tools">
+      <button class="tbtn" data-search-open aria-label="بحث"></button>
+      <button class="tbtn" id="themeBtn" aria-label="الوضع الليلي"></button>
+    </div>
+  </div>
+  <nav id="mobileNav"></nav>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <b>دلع طيرك</b> — دليل تفاعلي للعناية بالطيور وتدريبها والتعامل معها بأمان.
+    <br>المعلومات إرشادية عامة، ولا تُغني أبدًا عن استشارة طبيب بيطري مختص بالطيور.
+    <div class="copy">
+      <span class="c-sym">©</span> جميع الحقوق محفوظة لـ <b>حازم أحمد</b> — 2026
+    </div>
+  </div>
+</footer>
+
+<button id="fab" data-asst-toggle aria-label="مساعد دلع طيرك"></button>
+
+<aside id="asst" aria-label="مساعد دلع طيرك">
+  <div class="asst-hd">
+    <div class="av" id="asstAv"></div>
+    <div><b>مساعد دلع طيرك</b><small>جاهز أساعدك</small></div>
+    <div class="tools">
+      <button data-asst-reset title="ابدأ من جديد"></button>
+      <button data-asst-close title="إغلاق"></button>
+    </div>
+  </div>
+  <div id="asstMsgs"></div>
+  <div id="asstChips"></div>
+  <form class="asst-form" id="asstForm">
+    <input id="asstInput" type="text" placeholder="اكتب مثل: عندي كوكتيل عمره 4 شهور ومش خايف" autocomplete="off">
+    <button type="submit" aria-label="إرسال"></button>
+  </form>
+</aside>
+
+<div id="searchOv">
+  <div class="search-panel">
+    <div class="searchbar" id="gSearchWrap"><input id="gSearch" type="text" placeholder="ابحث عن نوع طائر… الكوكتيل، الصقر، البومة"></div>
+    <div id="searchRes"></div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script>
+/* =========================================================
+   دلع طيرك — تطبيق تفاعلي كامل
+   © حازم أحمد 2026 — جميع الحقوق محفوظة
+   ========================================================= */
+
+/* ---------- 1) الأيقونات ---------- */
+const I={
+back:'<path d="M9 5l7 7-7 7"/>',
+search:'<circle cx="11" cy="11" r="7"/><path d="M20.5 20.5 16.8 16.8"/>',
+sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/>',
+moon:'<path d="M20 13A8 8 0 1 1 11 4a6.5 6.5 0 0 0 9 9z"/>',
+heart:'<path d="M12 21C7 17 2.5 13 2.5 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9.5 2.5C21.5 13 17 17 12 21z"/>',
+star:'<path d="M12 3l2.7 5.6 6.1.8-4.5 4.3 1.1 6-5.4-2.9L6.6 19.7l1.1-6L3.2 9.4l6.1-.8z"/>',
+warn:'<path d="M12 3.5 21.5 19.5H2.5Z"/><path d="M12 10v4M12 17v.1"/>',
+food:'<path d="M5 11a7 7 0 0 0 14 0z"/><path d="M8.5 11c0-3.2 1.4-5 3.5-5s3.5 1.8 3.5 5"/><path d="M4 19h16"/>',
+home:'<path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11v-9.5"/><path d="M10 20v-4.5h4V20"/>',
+hand:'<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11m0-3.5a1.5 1.5 0 0 1 3 0V11m0-2a1.5 1.5 0 0 1 3 0v6a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.6-2.1L3.3 15a1.6 1.6 0 0 1 2.4-2.1L8 15"/>',
+pulse:'<path d="M3 12h4l2.5-6 4 12 2.5-6H21"/>',
+shield:'<path d="M12 3 20 6v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V6z"/><path d="M8.5 12h2l1.5-3 2 5 1.5-2h2"/>',
+award:'<circle cx="12" cy="9" r="5"/><path d="M9.5 13.2 8 21l4-2.3L16 21l-1.5-7.8"/>',
+chat:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 21l1.9-5.4A8 8 0 1 1 21 12z"/>',
+send:'<path d="M21 3 3 10.5l7 3.5 3.5 7z"/><path d="M21 3 10 14"/>',
+close:'<path d="M6 6l12 12M18 6 6 18"/>',
+menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',
+eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+scale:'<path d="M7 3h10M7 21h10M8 3c0 4 3 5 4 6 1-1 4-2 4-6M8 21c0-4 3-5 4-6 1 1 4 2 4 6"/>',
+refresh:'<path d="M20 11a8 8 0 1 0-2.5 6M20 5v6h-6"/>',
+feather:'<path d="M20 4c-6 0-11 4-13 10l-3 6"/><path d="M20 4c0 6-4 11-10 13"/><path d="M9.5 12.5h5M11.5 8.5h5"/>',
+check:'<path d="M4.5 12.5 10 18 19.5 6.5"/>',
+spark:'<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'
+};
+function icon(n,s=18){return `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`}
+
+/* ---------- 2) رسومات الطيور SVG ---------- */
+function sideBird(a){
+  const tails={long:'M86,84 L14,58 6,82 22,110 86,116',med:'M86,86 L34,68 26,90 38,110 86,112',short:'M86,88 L52,74 46,92 56,108 86,110'};
+  let s=`<svg viewBox="0 0 240 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${a.alt||'طائر'}">`;
+  s+=`<path d="${tails[a.tail||'med']}Z" fill="${a.tailC||a.wing}"/>`;
+  s+=`<ellipse cx="122" cy="100" rx="58" ry="46" fill="${a.body}"/>`;
+  s+=`<ellipse cx="140" cy="118" rx="33" ry="25" fill="${a.belly}"/>`;
+  if(a.speckles){s+=`<g fill="${a.speckles}" opacity=".55"><circle cx="132" cy="110" r="2.4"/><circle cx="146" cy="120" r="2.4"/><circle cx="136" cy="128" r="2.4"/><circle cx="150" cy="108" r="2.4"/><circle cx="126" cy="122" r="2.4"/></g>`;}
+  s+=`<g transform="rotate(-16 104 92)">${a.flap?'<g class="flap-w">':''}<ellipse cx="104" cy="92" rx="40" ry="22" fill="${a.wing}"/><ellipse cx="112" cy="96" rx="24" ry="12" fill="${a.wing2||a.wing}"/>${a.flap?'</g>':''}</g>`;
+  s+=`<circle cx="168" cy="60" r="34" fill="${a.head}"/>`;
+  if(a.eyePatch)s+=`<circle cx="176" cy="56" r="14" fill="${a.eyePatch}"/>`;
+  if(a.crest)s+=`<path d="M164,32 C158,10 146,3 138,3 C150,12 156,22 158,32 Z" fill="${a.crest}"/><path d="M172,31 C174,11 187,3 195,5 C184,13 178,22 178,31 Z" fill="${a.crest}"/>`;
+  if(a.collar)s+=`<path d="M140,82 Q168,100 196,82 L196,90 Q168,108 140,90 Z" fill="${a.collar}" opacity=".9"/>`;
+  if(a.beakType==='hook')s+=`<path d="M197,48 Q228,54 221,74 Q217,86 199,80 Q212,68 197,60 Z" fill="${a.beak}"/><path d="M200,80 L210,88 L200,88 Z" fill="${a.beak}"/>`;
+  else s+=`<path d="M199,50 L224,61 L199,73 Q204,61 199,50 Z" fill="${a.beak}"/>`;
+  if(a.cheek)s+=`<circle cx="187" cy="73" r="8" fill="${a.cheek}"/>`;
+  if(a.brow){s+=`<circle cx="176" cy="56" r="7.5" fill="${a.eyeC||'#F2B33D'}"/><circle cx="178" cy="56" r="3.6" fill="#1D1A16"/><path d="M163,46 Q176,38 191,46 L191,52 Q176,45 163,52 Z" fill="${a.browC||'#3A2E1F'}"/>`;}
+  else{s+=`<circle cx="176" cy="55" r="9" fill="#FFFDF6"/><circle cx="179" cy="55" r="4.6" fill="#241F1A"/><circle cx="181" cy="52.5" r="1.7" fill="#fff"/>`;}
+  s+=`<path d="M110,144v19m-5.5,0h11M134,142v19m-5.5,0h11" stroke="${a.legs||'#C9A15C'}" stroke-width="4.5" fill="none" stroke-linecap="round"/>`;
+  return s+'</svg>';
+}
+function owlBird(a){
+  let s=`<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${a.alt||'بومة'}">`;
+  s+=`<path d="M40,52 L26,10 L74,36 Z" fill="${a.body}"/><path d="M160,52 L174,10 L126,36 Z" fill="${a.body}"/>`;
+  s+=`<ellipse cx="100" cy="112" rx="66" ry="78" fill="${a.body}"/>`;
+  s+=`<ellipse cx="46" cy="120" rx="18" ry="44" fill="${a.wing}"/><ellipse cx="154" cy="120" rx="18" ry="44" fill="${a.wing}"/>`;
+  s+=`<circle cx="70" cy="84" r="33" fill="${a.face}"/><circle cx="130" cy="84" r="33" fill="${a.face}"/><circle cx="100" cy="98" r="24" fill="${a.face}"/>`;
+  s+=`<circle cx="72" cy="82" r="19" fill="#FFF8EA"/><circle cx="128" cy="82" r="19" fill="#FFF8EA"/>`;
+  s+=`<circle cx="73" cy="83" r="10" fill="#221B12"/><circle cx="127" cy="83" r="10" fill="#221B12"/>`;
+  s+=`<circle cx="77" cy="79" r="3" fill="#fff"/><circle cx="131" cy="79" r="3" fill="#fff"/>`;
+  s+=`<path d="M52,64 Q72,55 90,64" stroke="${a.wing}" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M110,64 Q128,55 148,64" stroke="${a.wing}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+  s+=`<path d="M90,102 L110,102 L100,122 Z" fill="${a.beak}"/>`;
+  s+=`<g fill="${a.wing}" opacity=".5"><circle cx="86" cy="140" r="3"/><circle cx="106" cy="146" r="3"/><circle cx="116" cy="136" r="3"/><circle cx="94" cy="158" r="3"/><circle cx="112" cy="158" r="3"/></g>`;
+  s+=`<path d="M84,182v7m-6,0h12M116,182v7m-6,0h12" stroke="${a.legs||'#C9A15C'}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  return s+'</svg>';
+}
+function art(b,flap){return b.art.kind==='owl'?owlBird(b.art):sideBird({...b.art,flap});}
+const CANARY_ART={kind:'side',body:'#FFD75E',head:'#FFD75E',belly:'#FFF0B0',wing:'#F2B93E',wing2:'#E5A82E',tail:'med',tailC:'#F2B93E',beak:'#C9963F',legs:'#E0A63C',alt:'كناري'};
+
+/* ---------- 3) قاعدة البيانات ---------- */
+const AGE_LABELS=['أقل من شهر','حوالي شهر','من شهر إلى 3 أشهر','أكثر من 3 أشهر','سنة أو أكثر'];
+const AGE_MID=[0.5,1,2,5,12];
+const CHICK_SIGNS=['يطلق صوت طلب طعام حاد ومستمر ويفتح فمه عند اقتراب يدك','لا يأكل من الصحن بنفسه، أو يأكل القليل جدًا وينتظر التغذية','ريشه ما زال ناعمًا «شعريًا» وبطنه ينتفخ بعد كل وجبة','يجلس منخفضًا ووضعته على المجثم ضعيفة غير متزنة'];
+const WEANED_SIGNS=['يأكل من الصحن بنفسه بثبات ووزنه يزداد بانتظام','يوازن ويتسلق المجاثم بقوة ويحلّف ريشه بنفسه','يقل طلب الطعام من فمك ويهتم بالألعاب والاستكشاف أكثر','ريشه اكتمل تقريبًا ويبدو نشيطًا في أوقات النهار'];
+
+const DB=[
+{id:'cockatiel',name:'الكوكتيل',cat:'pets',popular:true,
+ colors:{bg:'#FFF3D6',a:'#E8A13A'},
+ desc:'ببغاء أسترالي ودود بقمة رأس تتحرك مع مزاجه — من أشهر طيور الأسر لصفاء صوته وحبّه للقرب من أصحابه.',
+ art:{kind:'side',body:'#A9B0B8',head:'#F5CE4A',belly:'#F3E7CB',wing:'#7C858E',wing2:'#6B737B',tail:'long',tailC:'#8C949C',crest:'#F5CE4A',cheek:'#F08A24',beak:'#B48A5A',legs:'#9C8464',alt:'كوكتيل'},
+ age:{min:2,max:2.5,
+  chickNote:'أقل من شهرين: غالبًا ما زال فرخًا يعتمد على أهله أو على إطعام يدوي بالتركيبة الخاصة.',
+  weanNote:'بين شهرين و3 أشهر: قد يكون في مرحلة الفطام — راقب قدرته على الأكل من الصحن بنفسه.',
+  weanedNote:'أكثر من 3 أشهر: غالبًا مفطوم ويأكل بنفسه بشكل طبيعي.'},
+ feeding:{intro:'الأساس خليط متوازن مع خضار يوميًا — البذور وحدها عادة ضارة على المدى الطويل.',
+  good:[['حبيبات (بيليتس) مخصصة للكوكتيل','أساس الطعام الأفضل — تغطي فيتاميناته اليومية.'],
+        ['خضار يومية','جزر، كوسا، فلفل ملون، وبروكلي مطهو بالبخار — مقطعة صغيرة.'],
+        ['بذور كعلاج لا كأساس','دوار الشمس والدخن ممتازة للمكافآت أثناء التدريب فقط.'],
+        ['عظم الحبار','مصدر كالسيوم طبيعي ويقوي المنقار — ثبّته بحائط القفص.']],
+  avoid:[['الأفوكادو والشوكولاتة والقهوة','سامة للطيور حتى بكميات صغيرة — أبعدَها نهائيًا.'],
+        ['البذور فقط كنظام كامل','تسبب سمنة وكبدًا دهنيًا ونقص فيتامينات مع الوقت.'],
+        ['أطعمة المائدة','الملح والمقليات والحلويات كلها خطر على جهازه الصغير.'],
+        ['بذور الفواكه','بذور التفاح والحمضيات تحتوي مركبات ضارة — أزلها دائمًا.']],
+  water:'ماء نظيف في وعاء ثابت، يُغيَّر كل يوم صباحًا ويُغسل الوعاء لمنع الطحالب.'},
+ housing:{intro:'كوكتيل سعيد = قفص أفقي واسع، مجاثم متنوعة، ونشاط يومي.',
+  points:[['حجم القفص','60×45×45 سم على الأقل — الكوكتيل يطير أفقيًا لا عموديًا، فالعرض أهم من الطول.'],
+        ['المجاثم','خشب طبيعي بأقطار مختلفة لتقوية الأقدام ومنع تقرحات القدم.'],
+        ['الألعاب','سلّم وجرس وألعاب خشبية يقلّبها — بدّلها كل أسبوع حتى لا يملّ.'],
+        ['النظافة','نفض القفص يوميًا واغسله غسيلًا عميقًا أسبوعيًا بماء وصابون معتدل.'],
+        ['مكان القفص','غرفة معيشة هادئة، بعيدًا عن المطبخ والتيارات الهوائية والشمس المباشرة.']]},
+ taming:{intro:'الكوكتيل طائر اجتماعي يريد صديقًا لا مالكًا — الصبر أهم خطوة.',
+  steps:['اجلس بجانب القفص بهدوء 10 دقائق يوميًا حتى يعتاد وجودك بالكامل.',
+    'تحدّث معه بصوت هادئ واسمه باسم واحد ثابت في كل مرة.',
+    'قدّم مكافأة (بذرة دوار الشمس) من طرف القفص عندما يقترب منك بنفسه.',
+    'افتح الباب وقدّم يدك ثابتة تحت صدره حتى يصعد بمحض إرادته.',
+    'لا تجبره أبدًا إن كان خائفًا — انسحب بهدوء وارجع في اليوم التالي من بداية أبسط.']},
+ behavior:{intro:'قمة رأس الكوكتيل «مقياس مزاج» ممتاز — راقبها أولًا.',
+  signals:[['القمة منتصبة للأمام','فضول وانتباه — يريد أن يستكشف ما يحدث.','info'],
+    ['القمة مسحوبة للخلف تمامًا','خوف أو توتر — امنحه مسافة ولا تحاول التقربه الآن.','warn'],
+    ['القمة مرتخية وحركات بطيئة','مرتاح وشبه نائم — الوقت مناسب للقرب الهادئ.','good'],
+    ['طقطقة المنقار البطيئة','راضٍ ومرتاح — هذه «العضة الناعمة» السعيدة.','good'],
+    ['صراخ متكرر ورفرفة داخل القفص','ملل أو طاقة مكبوتة — يحتاج خروجًا للتطوير والألعاب.','warn'],
+    ['إلقاء الرأس جانبًا ورفع الذيل','يطلب تدليك الرأس أو التقريب منك.','good']]},
+ training:{intro:'ابدأ بما يعرفه بالفعل ثم وسّع خطوة كل أسبوع.',
+  items:[['الوقوف على اليد','اجعل يدك مجثمًا عاديًا داخل القفص أسبوعًا كاملًا قبل أي حركة — يتعلم أن اليد مكان آمن.'],
+    ['الاقتراب التدريجي','ضع المكافأة على مسافات تتقارب كل يوم: طرف القفص، ثم الباب، ثم يدك.'],
+    ['المكافأة المرتبطة بكلمة','قل كلمة ثابتة قصيرة مع كل مكافأة — سيربط الصوت بالأكل ويأتي بمجرد سماعه.'],
+    ['تقليل الخوف تدريجيًا','جلسات قصيرة متكررة أفضل من جلسة طويلة — 5 دقائق مرتين يوميًا مثالية.'],
+    ['الصافرة والحديث','أرسل صافرة أو كلمة بسيطة أمام الطعام بانتظام — يتعلم ما يسمعه وقت المتعة.']]},
+ health:{intro:'الوقاية أسهل من العلاج: روتين بسيط يكشف المرض مبكرًا.',
+  points:[['تغيّر الريش السنوي','مرحلة طبيعية تحتاج بروتينًا وهدوءًا — راقب أنه يأكل جيدًا خلالها.'],
+        ['حمام أسبوعي','ماء أو رمل نظيف للسباحة والتنظيف — يقوي الريش ويقلل التوتر.'],
+        ['الوزن والأظافر','زن أسبوعيًا بميزان مطبخ دقيق، والأظافر الطويلة تُقص عند طبيب طيور.'],
+        ['علامات إنذار','عطاس متكرر، ريش منكوش نهارًا، جلوس أرضي — طبيب طيور فورًا.']]},
+ warnings:['أبخرة قلايات التيفلون (PTFE) قاتلة للطيور خلال دقائق — أبعد القفص عن المطبخ تمامًا.',
+  'يحتاج 10–12 ساعة ظلامًا ليليًا؛ نقص النوم يظهر في قمة ريش رخوة وتهيّج.',
+  'القطط والكلاب «وإن كانت هادئة» خطر دائم — لا تتركهما معًا أبدًا دون رقابة مباشرة.']
+},
+{id:'budgie',name:'البادجي',cat:'pets',
+ colors:{bg:'#EFF4D8',a:'#7FA43A'},
+ desc:'أصغر ببغاءات العالم وأكثرها حبًا للعب — سريع البديهة، يتعلم الكلمات القصيرة، ويحب رفيقًا دائمًا.',
+ art:{kind:'side',body:'#7FBF3F',head:'#FFDE3B',belly:'#E8F4B8',wing:'#5B9E33',wing2:'#4C8A2A',tail:'long',tailC:'#5B9E33',collar:'#2E5D1E',beak:'#D8A83C',legs:'#C9A15C',alt:'بادجي'},
+ age:{min:1.5,max:2,
+  chickNote:'أقل من 6 أسابيع: غالبًا فرخ صغير يعتمد على إطعام الأهل أو اليدوي.',
+  weanNote:'بين 6 و8 أسابيع: مرحلة الفطام — أهم شيء يتعلّم الأكل من الصحن بنفسه الآن.',
+  weanedNote:'أكثر من شهرين: غالبًا مفطوم تمامًا ونشيط في تناول الطعام.'},
+ feeding:{intro:'بادجي نشيط يحرق طاقته — غذاؤه خفيف ومتنوع ونظيف.',
+  good:[['حبيبات بادجي كأساس','أفضل من البذور المفتوحة — تمنع انتقائية الأكل.'],
+        ['دخن رفيع كعلاج','أداة تدريب ممتازة، لكن بحدود حتى لا يمانع.'],
+        ['خضار مفروم ناعم','جزر وسبانخ وفلفل — صغير بما يكفي لمنقاره.'],
+        ['قشر بيض مطهو ومطحون','كالسيوم طبيعي مهم خاصة للإناث.']],
+  avoid:[['الأفوكادو والشوكولاتة','سامتان — أبعدَهما عن أي طائر.'],
+        ['خبز أبيض وأرز مطبوخ كأساس','يمتلئ دون فائدة غذائية حقيقية.'],
+        ['بذور فقط','سمنة مبكرة شائعة جدًا بين البادجي المربّاة على البذور وحدها.'],
+        ['ماء راكد أو أطباق متسخة','البادجي حساس للبكتيريا — نظافة يومية.']],
+  water:'وعاء صغير نظيف يُغيَّر يوميًا — البادجي يشرب قليلًا لكن كثيرًا.'},
+ housing:{intro:'قفص أفقي واسع ورفيق لعب — هذان سرّ سعادة البادجي.',
+  points:[['حجم القفص','45×45 سم لكل بادجي على الأقل، والعرض أهم من الارتفاع.'],
+        ['رفيق أو وقت معك','البادجي وحيد يزدهر بالاهتمام اليومي، وإلا فضع له رفيقًا.'],
+        ['الألعاب','أجراس ومرايا بحدود (لا تُبقى دائمًا) وسلالم صغيرة للتنقل.'],
+        ['النظافة','تبديل قاع القفص يوميًا — البادجي كثير النشاط والحركة.'],
+        ['المكان','مستوى العين مكان مثالي: يشعر بالأمان ويشاركك حياتك اليومية.']]},
+ taming:{intro:'البادجي شجاع رغم صغره — يتعلّم بسرعة إن كان صبورًا معه.',
+  steps:['ضع الدخن بيدك داخل القفص دون حركة حتى يأكل وهو على يدك.',
+    'تحدّث بصوت هادئ دائمًا — البادجي يتعلم نبرة صوتك قبل أي شيء.',
+    'قدّم إصبعك مستويًا تحت صدره كأنه مجثم صغير.',
+    'كافئ كل ثانية يقف فيها على إصبعك فورًا بالدخن.',
+    'لا تطارده داخل القفص أبدًا — الخوف المبكر يكلفك أسابيع من الثقة.']},
+ behavior:{intro:'البادجي لغته حركة أكثر من صوت — راقب أجنحته ورأسه.',
+  signals:[['رفرفة ثابتة في مكانه','تمرين صباحي أو فرح — سلوك صحي وطبيعي.','good'],
+    ['عضّ خفيف أثناء اللعب','استكشاف بالمنقار — هكذا «يلمس» الأشياء.','info'],
+    ['نقر القضبان باستمرار','ملل وضيق — يريد ألعابًا جديدة أو خروجًا.','warn'],
+    ['الريش منتفيخ والرأس للخلف','مرتاح ونائم — لا تزعجه.','good'],
+    ['صراخ حاد متكرر','تنبيه أو خوف — ابحث عن مصدر الإزعاج.','warn'],
+    ['تنظيف ريش رفيقه','رابط قوي ومحبة — علاقة صحية بين الرفيقين.','good']]},
+ training:{intro:'أسرع الطيور الأليفة تعلّمًا — استثمر حماسه الصغير.',
+  items:[['الوقوف على الإصبع','أول وأهم مهارة — ثبّتها أسبوعين قبل أي شيء جديد.'],
+    ['الكلمات القصيرة','اسمه أولًا، ثم كلمتان بسيطتان بالتكرار الهادئ أمام الطعام.'],
+    ['العودة للقفص','اجعل القفص المكان الأفضل: عشاء مميز ينتظره داخله كل مساء.'],
+    ['الاقتراب بلا خوف','درّبه على كلمة «تعال» مع الدخن من مسافات تزداد يوميًا.'],
+    ['اللعب التفاعلي','كرة ورقية صغيرة يدفعهالها — تقوي رابطه معك وتحرق طاقته.']]},
+ health:{intro:'بادجي صحي = أنف نظيف وريش لامع ونشاط دائم.',
+  points:[['حول المنقار والعين','ريش متسخ أو إفرازات حول الأنف = طبيب طيور بسرعة.'],
+        ['الوزن','زن أسبوعيًا — السمنة أخطر أمراض البادجي الصامتة.'],
+        ['الأظافر والمنقار','يتقوّسان على الحجر الخشن — وفّر حجر منقار في القفص.'],
+        ['الحركة','بادجي لا يقفز ولا يطير = علامة مرض مبكرة جدًا، لا تنتظر.']]},
+ warnings:['أغلق النوافذ والمرايا قبل خروجه من القفص — الاصطدام سبب إصابات رقم واحد.',
+  'بخاخات التنظيف والحشرات تؤذي رئته الصغيرة — انقله لغرفة أخرى قبل الاستخدام.']
+},
+{id:'parrot',name:'الببغاء الأفريقي',cat:'pets',popular:true,
+ colors:{bg:'#ECEEF0',a:'#7A828C'},
+ desc:'أذكى طيور الأسر وأطولها عمرًا (حتى 50 سنة) — عقل طفل فضولي يطلب تحفيزًا يوميًا ووفاءً مدى الحياة.',
+ art:{kind:'side',body:'#9AA1AB',head:'#AEB5BF',belly:'#C7CCD4',wing:'#767D88',wing2:'#656C76',tail:'long',tailC:'#C4453C',eyePatch:'#EFE8D8',beak:'#3A3F45',legs:'#7C7468',alt:'ببغاء رمادي أفريقي'},
+ age:{min:3,max:4,
+  chickNote:'أقل من 3 أشهر: فرخ يعتمد كليًا على التغذية اليدوية المتخصصة — مهمة دقيقة لا تُنفذ دون تعلّم.',
+  weanNote:'بين 3 و4 أشهر: مرحلة فطام حساسة — يبدأ الأكل بنفسه مع بقاء إطعام مساعد.',
+  weanedNote:'أكثر من 4 أشهر: مفطوم غالبًا، ووزنه الثابت هو الدليل الأهم.'},
+ feeding:{intro:'حبيبات عالية الجودة أولًا، والتنويع الفاكهي مكافأة يومية.',
+  good:[['حبيبات أساس (60% من الطعام)','العمود الفقري لغذاء الببغاء الكبير.'],
+        ['مكسرات نيئة غير مملحة','لوز وجوز — قشرها بنفسك وهي مكافأة تدريب مثالية.'],
+        ['فواكه وخضار ملونة','مانجو، بابايا، جزر، قرع — كلما زاد اللون زادت الفائدة.'],
+        ['بقوليات مطهوة','عدس وحمص مسلوق جيدًا — بروتين نباتي ممتاز.']],
+  avoid:[['الأفوكادو والبصل والشوكولاتة والكافيين','سامة معروفة للببغاوات — خطأ واحد قد يكون قاتلًا.'],
+        ['أبخرة المقالي غير اللاصقة (PTFE)','قاتلة فورية للطيور الكبيرة أيضًا.'],
+        ['حصص كبيرة من بذور دوار الشمس','كالآيس كريم للأطفال — محبوبة ومضرة.'],
+        ['أطعمة مالحة أو متبولة','كلى الببغاء لا تتحمل الملح إطلاقًا.']],
+  water:'وعاء واسع ثابت يُغيَّر مرتين يوميًا — الببغاء يغمس طعامه بالماء فتتسخ بسرعة.'},
+ housing:{intro:'ببغاء ذكي يحتاج «غرفة» لا قفصًا — مساحة تفكير وتحريك.',
+  points:[['حجم القفص','90×60×120 سم على الأقل، مع باب واسع للخروج اليومي.'],
+        ['مغادرة يومية','ساعات خارج القفص في غرفة آمنة مقفلة النوافذ — ضرورة لا رفاهية.'],
+        ['ألعاب ألغاز','ألعاب تستخرج بها الطعام — عقله يحتاج عملًا مثل جسمه.'],
+        ['مجاثم متنوعة','خشب وحبل وحجر بأقطار مختلفة لحماية قدميه.'],
+        ['مكان القفص','غرفة اجتماعية يشاهدكم فيها، بعيدًا تمامًا عن المطبخ وأبخرة الطهي.']]},
+ taming:{intro:'الرمادي يقيس ثقتك بعينه قبل أن يمدّ قدمه — لا تستعجل أبدًا.',
+  steps:['اجلس على مسافة متر ونصف من القفص واقرأ بصوت هادئ 15 دقيقة يوميًا.',
+    'تحدّث بجمل قصيرة ثابتة — يتذكّر الأصوات المرتبطة بالأمان.',
+    'قدّم مكافأة من مكان بعيد داخل القفص ثم قرّب يدك على مراحل عبر أسابيع.',
+    'قدّم ساعدك أفقيًا كجسر ثابت — لا تدفعه ولا تسحبه نحوها أبدًا.',
+    'لا تعاقب أبدًا (صوت عالٍ أو هز القفص) — يتذكّر ويتراكم عنده الخوف منك.']},
+ behavior:{intro:'الببغاء الأفريقي صريح بعينه وجناحيه — تعلّم قراءتهما.',
+  signals:[['تضيّق البؤبؤ وتوسيعه (تثبيت العين)','تركيز وإثارة — غالبًا قبل اللعب أو العض، خفّف الحماس.','info'],
+    ['رفرفة جناح جزئية مع انحناء','فرح واستعداد للعبة — استمر بنفس النبرة.','good'],
+    ['ريش منتفخ ورأس مدفون','هدوء ونوم… أو مرض إن صاحبه خمول — سياق القرار.','info'],
+    ['صراخ حاد متكرر','يناديك، أو متوتر، أو تعبان — راقب السبب ولا تجاهله.','warn'],
+    ['قرقرة عميقة في الحلق','ارتياح تام — هذه لغة الثقة.','good'],
+    ['تنفس بفتح الفم ورفرفة أذنه','إجهاد حراري أو مرض — برّده وراقب، واستشر طبيبًا إن تكرر.','warn']]},
+ training:{intro:'أعقد عقل في عالم الطيور = أطول قائمة تدريب ممكنة.',
+  items:[['ألغاز استخراج الطعام','علبة بثقوب تخفي المكسرات — تمرين عقلي يومي يمنع الملل.'],
+    ['الكلام بسياق','علّم «مرحبًا» وقت الدخول و«باي» وقت الخروج — يتعلم المعنى لا الصوت.'],
+    ['العودة بالأمر','درّب «ارجع» مع مكافأة عالية القيمة داخل غرفة مغلقة أولًا.'],
+    ['تدريب الطاولة','جلسة قصيرة يوميًا على طاولة ثابتة بألعاب متبادلة — يبني تركيزه وثقته.'],
+    ['إدارة الصراخ','لا تستجب للصراخ أبدًا، وكافئ الهدوء فورًا — يتعلم أي سلوك «ينفع».']]},
+ health:{intro:'أهم ملف صحي: العقل والريش — كلاهما يمرض مع الملل.',
+  points:[['نتف الريش (Plucking)','غالبًا ملل أو توتر وليس جلدًا — راجع بيئته وألعابه أولًا ثم الطبيب.'],
+        ['فحص سنوي شامل','عند طبيب طيور — أمراضه تظهر متأخرة جدًا على السطح.'],
+        ['الوزن الأسبوعي','أدق مؤشر مبكر لصحته — 350–500غ للرمادي البالغ.'],
+        ['طيران داخلي آمن','غرفة مغلقة النوافذ دون مرايا — عضلاته ورئته يحتاجان الحركة.']]},
+ warnings:['أبخرة أدوات الطهي غير اللاصقة (PTFE) تقتل الببغاء خلال دقائق — خطر صامت جدًا.',
+  'عمره حتى 50 سنة — قرار عائلي موروث، اكتب خطة من يعتني به بعيدك.',
+  'البقاء وحيدًا أيامًا يسبب توترًا ونتف ريش — لا يُترك دون رفيق أو رعاية.']
+},
+{id:'lovebird',name:'طيور الحب',cat:'pets',
+ colors:{bg:'#FBEAE0',a:'#E0703F'},
+ desc:'عاشقة الشركة بالفطرة: تعيش أزواجًا وتتّحد بالعاطفة — جسم أخضر ووجه مرجاني وقلب مخلص لرفيقه.',
+ art:{kind:'side',body:'#82BC4C',head:'#F0805A',belly:'#F7E08E',wing:'#5E9E38',wing2:'#4E8830',tail:'med',tailC:'#5E9E38',beak:'#D94F3D',legs:'#C9A15C',alt:'طائر الحب'},
+ age:{min:2,max:2.5,
+  chickNote:'أقل من شهرين: غالبًا فرخ ما زال يطلب الطعام من الأهل أو اليد.',
+  weanNote:'بين شهرين و3 أشهر: مرحلة فطام — تعلّم الأكل المستقل هو المؤشر الحقيقي.',
+  weanedNote:'أكثر من 3 أشهر: مفطوم غالبًا ونشيط في اللعب والطيران.'},
+ feeding:{intro:'طعام صغير ومتنوع — طيور الحب انتقائية فنوّع من اليوم الأول.',
+  good:[['خليط بذور صغيرة','دخن وأرز أخضر وبذور عشب — مع حبيبات إذا قبلها.'],
+        ['خضار يومية','سبانخ وجزر وقرع مقطع رقيقًا.'],
+        ['عظم الحبار','كالسيوم أساسي خاصة للإناث النابضة.'],
+        ['فاكهة نادرة','تفاح بلا بذور أو قطعة برتقال — مرتين أسبوعيًا.']],
+  avoid:[['الأفوكادو والشوكولاتة','سامة لكل الطيور بلا استثناء.'],
+        ['مرايا وأدوات عش دائمة','تزيد التوتر والانفراد الشديد بعيدًا عنك.'],
+        ['بذور الشمسية بكثرة','دهنية جدًا لحجمه الصغير.'],
+        ['أطعمة بشرية مالحة','حساسية شديدة للملح.']],
+  water:'وعاء نظيف يوميًا — طيور الحب تحب غمس الطعام فتتسخ المياه بسرعة.'},
+ housing:{intro:'العرض أهم من الارتفاع — طيور الحب تقفز أفقيًا أكثر من الطيران العمودي.',
+  points:[['حجم القفص','عرض 60 سم على الأقل للزوج مع فتحات واسعة.'],
+        ['ألعاب نسيج','أوراق جلدية وحبال تحك — منقارها نشيط يحتاج عملًا.'],
+        ['لا عش دائم','العش الدائم يرفع التوتر التناسلي — فقط عند نية تربية فعلية.'],
+        ['النظافة','تبديل القاع يوميًا — نشاطها الغذائي متكرر.'],
+        ['المكان','غرفة حيّة دافئة بعيدًا عن التيارات — إنها طائر اجتماعي قبل كل شيء.']]},
+ taming:{intro:'إن كان مقترنًا فتعويده أصعب — شريكه أفضل منك في نظره، والصبر هو الطريق.',
+  steps:['اقضِ ساعة يوميًا بجانب القفص دون محاولة لمس — تَعرّف أولًا.',
+    'قدّم الدخن من يدك داخل القفص بنفس الوقت يوميًا.',
+    'افتح الباب واترك يدك داخل القفص مع الدخن حتى يصعد بنفسه.',
+    'لا تلمس جناحيه أو ظهره — الرأس فقط منطقة مقبولة له.',
+    'لا تفصل الزوج أبدًا لتدريب واحد — التفريق عذاب نفسي لطيور الحب.']},
+ behavior:{intro:'طيور الحب صريحة العاطفة — راقبها مع رفيقها ومعك.',
+  signals:[['تنظيف رأس الرفيق','محبة ورعاية متبادلة — علاقة قوية.','good'],
+    ['قرقرة عميقة ونعومة','ارتياح وطمأنينة.','good'],
+    ['قضم الأصابع بلطف','استكشاف وتوثيق — ليس عدوانًا.','info'],
+    ['صراخ حاد وقضم قوي','خوف أو دفاع عن رفيقه — امنحه مسافة.','warn'],
+    ['ضرب الجناحين داخل القفص','توتر أو رغبة بالخروج — افحص المحيط.','warn'],
+    ['الانفراد بالعش وإهمال الطعام','سلوك تناسلي مبالغ — أزل العش وراقب.','warn']]},
+ training:{intro:'التدريب على رأس «شراكة» مع رفيقه لا ضدّه.',
+  items:[['الاقتراب بالدخن','أقوى أداة — استخدمه من يدك في وقت ثابت يوميًا.'],
+    ['الوقوف على الإصبع','تدريب فردي قصير منفصل أحيانًا لتقوية علاقتك مع كل فرد.'],
+    ['العودة للقفص','أمر ثابت + مكافأة داخل القفص دائمًا — لا تحبسه عنوة أبدًا.'],
+    ['قفزات قصيرة','بين مجثمين بجوار يدك — يبني الثقة والجسور.'],
+    ['ألعاب استخراج','ورق ملفوف حول حبة — يمنح منقاره عملًا صحيًا.']]},
+ health:{intro:'طائر نشيط بنظرة حادة = طائر سليم — راقبه ككل.',
+  points:[['الأظافر والمنقار','يتقوّسان على أغصان طبيعية — وفّر خشبًا صلبًا.'],
+        ['ريش حول الرأس','فقدان مفاجئ = فحص طفيليات أو سلوك نتف.'],
+        ['عيون غائمة أو مسدودة','طارئة بيطرية — لا تنتظر يومًا.'],
+        ['الوزن والنشاط','زن أسبوعيًا واقرن التغير بنشاطه اليومي.']]},
+ warnings:['لا تعشّشه إلا بنية تربية فعلية — التكاثر المتكرر منهك للإناث.',
+  'درجة حرارة ثابتة بعيدًا عن التيارات — طيور الحب حساسة للهواء البارد المباشر.']
+},
+{id:'canary',name:'الكناري',cat:'pets',
+ colors:{bg:'#FFF6D8',a:'#DCAE2C'},
+ desc:'فنان الغناء الأصفر — يراقبك ويغني لك كل صباح، لكنه فنان مستقل لا يحب عناق الأيد.',
+ art:{kind:'side',body:'#FFD75E',head:'#FFD75E',belly:'#FFF0B0',wing:'#F2B93E',wing2:'#E5A82E',tail:'med',tailC:'#F2B93E',beak:'#C9963F',legs:'#E0A63C',alt:'كناري'},
+ age:{min:1,max:1.5,
+  chickNote:'أقل من 4 أسابيع: فرخ بالعش يعتمد على الأهل — لا تلمسه مبكرًا إطلاقًا.',
+  weanNote:'بين 4 و6 أسابيع: فطام سريع — الأكل المستقل يتشكل الآن.',
+  weanedNote:'أكثر من 6 أسابيع: مفطوم تمامًا وقادر على العناية بنفسه.'},
+ feeding:{intro:'كناري معتدل الأكل — الخلطة الصحيحة تحمي كليته وغنائه.',
+  good:[['خليط كناري مخصص','بذور صغيرة متنوعة (كاناري، دخن، شيا).'],
+        ['خضار ورقية','سبانخ وخس وجزر مقطع رقيقًا.'],
+        ['بيض مسلوق ناعم','بروتين موسمي مهم أثناء تغيّر الريش والتناسل.'],
+        ['قشر بيض أو حجر كالسيوم','أساسي لصحة العظام والبيض.']],
+  avoid:[['الأفوكادو','سام بأصغر جرعة.'],
+        ['خضار مبللة تُترك','تتخمر وتسبب تسممًا — أزلها بعد ساعات.'],
+        ['بذور مبللة بالرطوبة','تنتج فطريات قاتلة في المخزن.'],
+        ['ملح وسكر','جهازه لا يتحملهما إطلاقًا.']],
+  water:'ماء نظيف يوميًا ووعاء ضيق حتى لا يستحم فيه ويبلل الغذاء.'},
+ housing:{intro:'قفص طيران واسع وحمام أسبوعي — هكذا يعيش الكناري غانيًا سليمًا.',
+  points:[['حجم القفص','طويل أفقي (70 سم عرضًا) ليقفز بين المجاثم ويطير.'],
+        ['المجاثم','على ارتفاعات متفاوتة بعيدًا عن أطباق الطعام.'],
+        ['حمام الماء','وعاء استحمام أسبوعي — نظافة الريش أساس الغناء.'],
+        ['النظافة','قاع نظيف يوميًا — الكناري حساس للأمونيا من الروث.'],
+        ['غطاء ليلي','غطاء ثابت ليلاً ينظم نومه ويحميه من تيار الهواء.']]},
+ taming:{intro:'الكناري مراقب لا حضان — هدفك «الارتياح لوجودك» لا الجلوس على يدك.',
+  steps:['اجلس بجانب القفص يوميًا في وقت ثابت واقرأ بصوت منخفض.',
+    'اربط وجودك بالطعام: ضع قطعة الخضار المفضلة كلما دخلت.',
+    'قدّم خضرة من يدك عبر قضبان القفص دون فتح الباب أولًا.',
+    'افتح الباب واترك الطعام على حافة ثم على يدك ثابتة — دون دفع.',
+    'لا تحاول إخراجه أو مسكه للتدريب — الخوف يقاطع الغناء أسابيع.']},
+ behavior:{intro:'غناء الكناري أصدق مؤشر على حالته — راقب الصوت أولًا.',
+  signals:[['غناء متواصل وصاف','صحة ورضا — فترته الذهبية.','good'],
+    ['ضرب القضبان بالجناح','إثارة لعب أو رغبة بالطيران — وقت نشاطه.','good'],
+    ['ريش منكوش نهارًا','نوم ليلي ناقص أو مرض مبكر — راجع الظلام الليلي.','warn'],
+    ['صمت طويل مفاجئ','أول إنذار مرضي عند الكناري — راقب الأكل فورًا.','warn'],
+    ['جلوس أرضي مترجرج','إرهاق أو برد — افحص التيارات ودرجة الحرارة.','warn'],
+    ['استحمام حماسي','راحة وريش سليم — استمر على الجدول.','good']]},
+ training:{intro:'تدريب الكناري تدريب بيئة لا يد — اجعل حياته روتينًا ثابتًا.',
+  items:[['تعويد صافرة الطعام','أصدر صوتًا ثابتًا كل مرة تقدّم الطعام — سيأتي إليه بنفسه.'],
+    ['قفز المجاثم','تحريك مكافأة بين المجاثم يشجع قفزات متزايدة — تمارين رياضية.'],
+    ['الاستحمام المنتظم','ثبّت يومًا ووقتًا لوعاء الاستحمام — يتعلم الجدول بسرعة.'],
+    ['الارتياح للغطاء','غطِّ بنمط ثابت — يتعلم أن الغطاء يعني النوم الآمن.'],
+    ['تطوير الغناء','شغّل تسجيلات كناري محترف بهدوء — يقلد ويطور لحنه.']]},
+ health:{intro:'كناري سليم = غناء يومي وريش مشدود وعين لامعة.',
+  points:[['تغيّر الريش','يحتاج بروتينًا أعلى (بيض مسلوق) وهدوءًا تامًا خلاله.'],
+        ['قص الأظافر','تُقص بعناية عند الطبيب — الكناري يقاوم المسك بشدة.'],
+        ['الوزن','سمنة البذور شائعة — قدّم الخضار أولًا كل صباح.'],
+        ['التنفس','تنفس بفتح الفم أو صوت صفير = طبيب فورًا.']]},
+ warnings:['التيارات الهوائية المباشرة (مكيف/نافذة) قاتلة للكناري خلال ساعات.',
+  'الصيف الحار خطير: الحرارة المرتفعة ترفع ضرباته — ظل دائم وماء كثير.']
+},
+{id:'pigeon',name:'الحمام',cat:'pets',
+ colors:{bg:'#E8EDF2',a:'#7E93AB'},
+ desc:'رمز السلام ورسول العالم القديم — طائر هادئ يتعرف على صاحبه من بعيد ويعود إليه دائمًا.',
+ art:{kind:'side',body:'#A7B4C2',head:'#98A6B6',belly:'#CDD5DE',wing:'#8794A5',wing2:'#75839A',tail:'med',tailC:'#8794A5',collar:'#9B8FC4',beak:'#D8D2C4',legs:'#C46E5A',alt:'حمام'},
+ age:{min:1.5,max:2,
+  chickNote:'أقل من 6 أسابيع: زغلول يعتمد على «حليب الحوصلة» من الأهل — إطعامه يدويًا مهارة خاصة.',
+  weanNote:'بين 6 و8 أسابيع: مرحلة فطام — يتعلّم حبّ الطعام من الصحن الآن.',
+  weanedNote:'أكثر من شهرين: مفطوم ويعتمد على نفسه في الأكل والمشي.'},
+ feeding:{intro:'خليط حمام كامل + حصى صغيرة — الحصى هو «أسنانه» التي تطحن الطعام.',
+  good:[['خليط الحمام التقليدي','قمح وذرة مجروشة وبازلاء وفول — قاعدة غذاؤه.'],
+        ['حصى صغيرة (Grit)','إلزامية في الحوصلة لطحن الحبوب — وفّرها في وعاء دائم.'],
+        ['خضروات وقشور بيض','مكملات كالسيوم وفيتامينات مفيدة.'],
+        ['ماء كثير ونظيف','الحمام يشرب كثيرًا وينظف منقاره — وعاء ثقيل واسع.']],
+  avoid:[['الخبز الأبيض كأساس','يمتلئ دون تغذية حقيقية — اعتبره علاجًا نادرًا.'],
+        ['الملح والمملحات','سام للحمام كأي طائر.'],
+        ['حبوب مبللة أو متعفنة','فطر الأفلاتوكسين قاتل — خزّن الطعام جافًا.'],
+        ['إطعام فرادى من يد واحدة دائمًا','قد يرفض الطعام الجماعي لاحقًا — نوّع الطريقة.']],
+  water:'وعاء ثقيل واسع يُغيَّر يوميًا — الحمام يشرب وينقع منقاره كثيرًا.'},
+ housing:{intro:'حمام محتاج مساحة مشي وتطاير — القفص الضيق يفتك بريشه وقلبه.',
+  points:[['المساحة','حظيرة أو قفص عريض مع قضيب طيران طويل — لا قفص أليفة ضيق.'],
+        ['مكان المشي','أرضية صلبة نظيفة — الحمام ماشي أكثر مما هو راقص.'],
+        ['العش','فقط عند نية تربية — وبمكان مرتفع هادئ.'],
+        ['النظافة','الحمام كثير الروث — نظافة يومية تحمي من أغلب الأمراض.'],
+        ['الحماية','درع من القطط والصقور — العين الحادة أولًا.']]},
+ taming:{intro:'الحمام يذوب بالروتين — ثبّت الوقت والمكان والصوت، وسيأتي إليك.',
+  steps:['أطعم في وقت ثابت بنفس المكان وبنفس صوت النداء كل يوم.',
+    'اجلس على مستواه (أرضيًا) أثناء الأكل — قربك يصبح عاديًا.',
+    'بعد أسبوعين قدّم الحبوب من كف يدك مفتوحة دون حركة.',
+    'اللمس أول مرة: ربتة خفيفة على الظهر أثناء الأكل — لا الرأس.',
+    'لا تطارده أو ترفعه عنوة — الحمام المسكوف عنوة يفقد ثقته طويلًا.']},
+ behavior:{intro:'لغة الحمام واضحة — الجسم والصوت يخبرانك كل شيء.',
+  signals:[['النفخ والانتفاخ مع دوران','استعراض ذكوري عادي — لا قلق.','info'],
+    ['قرقرة عميقة قربك','ارتياح وثقة — أفضل ما يصدر عنه.','good'],
+    ['الدوس على الظهر','سلوك تزاوج — طبيعي بين الأزواج.','info'],
+    ['خفض الرأس ورفعه إليك','يدعوك للتدليك أو الأكل — علاقة ممتازة.','good'],
+    ['جلوس منتفخ وأرضي بلا حركة','مرض محتمل — افحصه من قريب فورًا.','warn'],
+    ['مطاردة عنيفة داخل القفص','صراع مساحة — وسّع القفص أو افصل.','warn']]},
+ training:{intro:'أشهر طيور التدريب تاريخيًا — الروتين والصوت هما أداتاك.',
+  items:[['الأكل من اليد','أساس كل علاقة — ابدأ به وأتقنه قبل أي شيء.'],
+    ['العودة بصافرة','اربط صافرة ثابتة بالطعام — سيرتبط بها بالعودة والأكل.'],
+    ['الوقوف على الكتف','بعد الثقة، انحنِ ببطء وقدّم كتفك مع طعام — قدّمه بنفسه.'],
+    ['مسارات طيران','في الحظيرة، حرّك الطعام لمسافات متزايدة — يطوّر عضلاته وذكائه الاتجاهي.'],
+    ['التنظيف الذاتي','وفّر وعاء استحمام أسبوعي — يشرب ويغتسل وينعش ريشه.']]},
+ health:{intro:'نظافة الماء والقاع تمنع 90% من أمراض الحمام الشائعة.',
+  points:[['جدري وتريكوموناس (الأصفر)','أشهر مرضين — الفحص الدوري واللقاح عند الطبيب مهمان.'],
+        ['عيون واضحة','عين غائمة أو دامعة = بداية مرض تنفسي — عاجل.'],
+        ['الوزن والحركة','حمام مترجرج أو بلا شهية = عزل فوري واستشارة.'],
+        ['الحصى دائمًا','غياب الحصى يسبب عسر هضم وضعفًا عامًا.']]},
+ warnings:['الروث الجاف يتحول غبارًا قد يحمل فطريات — بلّل القاع قبل النفض ولا تستنشق الغبار.',
+  'لا تخلط الحمام الأليف مع طيور بريّة مجهولة المصدر — خطر انتقال أمراض حقيقي.']
+},
+{id:'finch',name:'العصافير (الزيبرا فنش)',cat:'pets',
+ colors:{bg:'#F6E8DA',a:'#D98A5A'},
+ desc:'حيوية قطيع صغير: يعيش بالجماعة، يبني أعشاشه بالحماس، ويطير جماعيًا في لحظة واحدة.',
+ art:{kind:'side',body:'#C9A98C',head:'#B98F66',belly:'#F0D9C0',wing:'#A67C52',wing2:'#8F6A44',tail:'short',tailC:'#A67C52',cheek:'#F26A2E',beak:'#E04A3A',legs:'#E8A13A',alt:'زيبرا فنش'},
+ age:{min:1.5,max:2,
+  chickNote:'أقل من 6 أسابيع: فرخ بالعش — الأهل أقدر منك على إطعامه، لا تتدخل دون داع.',
+  weanNote:'بين 6 و8 أسابيع: فطام — يتعلّم تقشير البذور الصغيرة بنفسه.',
+  weanedNote:'أكثر من شهرين: مفطوم ونشيط بالطيران الجماعي.'},
+ feeding:{intro:'بذور صغيرة جدًا وأطعمة ناعمة — منقار الفنش صغير ودقيق.',
+  good:[['خليط فنش','دخن صغير وشيا وبذور عشب — مصمم لمنقاره.'],
+        ['بيض مسلوق ناعم','بروتين ممتاز أثناء التكاثر وتغيّر الريش.'],
+        ['خضار مفروم دقيقًا','جزر وسبانخ بحجم حبة رمل تقريبًا.'],
+        ['حصاة صغيرة','تساعد هضم البذور القاسية في الحوصلة.']],
+  avoid:[['الخبز والمكسرات الكبيرة','خطر انسداد في منقاره الصغير.'],
+        ['ماء راكد','الأسهل تلوثًا ومرضًا — غيّره يوميًا.'],
+        ['عشب مبلل أو بذور متعفنة','فطريات قاتلة في مخزن صغير.'],
+        ['لمس مفرط','الزيوت من يدك تفسد عزل ريشه الصغير.']],
+  water:'وعاء ضحل نظيف يوميًا — الفنش يحب الاستحمام فيه أيضًا.'},
+ housing:{intro:'قطيع دائم + قفص عرضي طويل = فنش حيوي سعيد.',
+  points:[['القطيع','3 فنches أو أكثر — الفنش الوحيد يكتئب ويهمل ريشه.'],
+        ['حجم القفص','عرض 80 سم على الأقل للطيران الجماعي الأفقي.'],
+        ['أغصان طبيعية','مجاثم بأقطار مختلفة بلا بلاستيك صلب.'],
+        ['الاستحمام','وعاء ماء ضحل يوميًا — سلوك صحي وممتع للمشاهدة.'],
+        ['العش','فقط عند نية تكاثر — خلاف ذلك يرفع التوتر والنزاع.']]},
+ taming:{intro:'الفنش لا يدخل اليد عادة — قيمته في طيرانه ونشاطه، لا الحضن.',
+  steps:['تعوّده على صوتك: تحدث بهدوء قرب القفص يوميًا في وقت ثابت.',
+    'اربط صوتك بالطعام: أطلق صوتًا ثابتًا قبل كل وجبة.',
+    'ضع الطعام من يدك ممدودة داخل القفص دون حركة — انتظر.',
+    'في الغسق الهادئ قد يقف على إصبعك ثواني — مكافأة فورية.',
+    'لا تلمسه كثيرًا — الزيوت واللمس المفرط يفسد عزله الحراري.']},
+ behavior:{intro:'طيران الفنش الجماعي لغة القطيع — الحركات المتناسقة تعني أمانًا.',
+  signals:[['طيران جماعي مفاجئ','لعب وتناسق القطيع — سلوك صحي.','good'],
+    ['صمت فردية وسط القطيع','أول علامة مرض — افصل وراقب فورًا.','warn'],
+    ['ذيل مترجرج وتنفس سريع','إرهاق أو برد أو مرض — افحص الحرارة والطبيب.','warn'],
+    ['تنظيف ريش متبادل','محبة ورابطة قطيع قوية.','good'],
+    ['نزاع على مجثم','تنافس طبيعي — زد عدد المجاثم.','info'],
+    ['ترديد غناء الذكر','منطقة صحة ورضا — استمتع بالصوت.','good']]},
+ training:{intro:'تدريب الفنش تدريب بيئة وصوت — لا حضن ولا يد.',
+  items:[['صافرة الطعام','صوت ثابت قبل كل وجبة — يتعلم الحضور فور سماعه.'],
+    ['طيران المسار','حرّك الطعام بين نقاط القفص ليصمم مسارات طيران.'],
+    ['جدول الاستحمام','وعاء ثابت في وقت ثابت — سيبدأ انتظاره بحماس.'],
+    ['التعويد على اليد كمجثم','يد ممدودة ساكنة مع الطعام — بعض الفنches تتعلم الوقوف عليها.'],
+    ['المراقبة دون تدخل','أهم «تدريب» هو ألا تتدخل — راقب حالتهم كقطيع.']]},
+ health:{intro:'القطيع مرآة الصحة — فرد واحد متغير سلوكيًا يستحق فحصًا فوريًا.',
+  points:[['التنفس بفتح الفم','علامة تنفسية طارئة — عزل ورعاية سريعة.'],
+    ['نظافة الماء','أهم إجراء وقائي واحد عند الفنches.'],
+    ['طفيليات خارجية','قمل الطيور يظهر كنقاط متحركة — علاج بمساعدة بيطري.'],
+    ['أظافر وأجنحة','راقب أثناء الاستحمام — أظافر طويلة تعيق الوقوف.']]},
+ warnings:['لا تُبقي فنشًا واحدًا أبدًا — الاكتئاب والانعزال يقتلان ببطء.',
+  'الشمس المباشرة دون ظل قاتلة في ساعات الظهيرة — القفص في ضوء مرشّح دائمًا.']
+},
+
+/* ===== الجوارح ===== */
+{id:'owl',name:'البومة',cat:'raptors',
+ colors:{bg:'#F0E4D0',a:'#A9825A'},
+ desc:'صيّادة ليلية بعيون كالصحاري وسمعٍ خارق — كائن بريّ يتطلب مختصًا ورخصة، لا مالكًا عاديًا.',
+ art:{kind:'owl',body:'#A9825A',wing:'#8A6A48',face:'#F0E3CE',beak:'#5B4A38',legs:'#C9A15C',alt:'بومة'},
+ legal:'امتلاك البومة وتربيتها خاضع للقوانين المحلية — في كثير من الدول يحتاج إذنًا رسميًا أو ممنوعًا للأفراد. تحقق من الجهة المختصة قبل أي خطوة.',
+ identify:{intro:'أشهر أنواع الأسر العربي هو القرنة الكبيرة (بومة القرن) — تعرّف عليها قبل أي قرار.',
+  points:[['القرون الريشية','خصلتان ريشيتان فوق الرأس — ليستا أذنين بل تمويه وتعبير.'],
+        ['قناع الوجه الدائري','ريش وجهي يوجّه الصوت نحو أذنيها — دائرة واضحة حول العينين.'],
+        ['عينان كهرمانيتان ثابتتان','لا تحرك مقلة عينها — تدير رأسها حتى 270 درجة بدلًا من ذلك.'],
+        ['التمييز عن الجوارح النهارية','البومة ليلية بعينين أماميتين ضخمتين — الصقور نهارية بعينين جانبيتين.']]},
+ age:{stages:[
+  {label:'فرخ صغير بالعش (ريش شعري)',title:'فرخ بالعش',text:'فرخ ما زال بالعش يعتمد كليًا على أهله أو على إطعام مختص — لمسه أو إطعامه الخاطئ في هذه المرحلة قد يقتله أو يفقده أمه.'},
+  {label:'فوّه (غادر العش ويحاول الطيران)',title:'فوّه — ناشئ مبتدئ',text:'غادر العش مبكرًا ويطير قليلًا بينما يكمل نموه على الأرض والأغصان — الأهله عادة قريبون يرعونه. إن وجدته تائهًا فلا تأخذه مباشرة: راقب من بعيد واستشر مختص حياة برية.'},
+  {label:'ناضج قادر على الطيران الكامل',title:'بومة ناضجة',text:'مستقلة تمامًا في الصيد والطيران — كائن بري كامل الاحتياجات، وإمساكه بلا رخصة وخبرة قد يكون مخالفة قانونية وخطورة حقيقية.'}]},
+ feeding:{intro:'القاعدة الذهبية: الحيوان كاملًا — عظمًا وفراءً. العظام هي مصدر الكالسيوم الذي يحافظ على هيكلها.',
+  good:[['قوارض كاملة','فئران وسمان تُقدم كاملة مع عظامها — المجمدة تُذاب وتُقدم بدرجة حرارة مناسبة.'],
+        ['طعام كامل منتظم','وجبة بحجم مناسب كل يوم حسب وزنها وموسمها.'],
+        ['عظام غضروفية إضافية','لعظام قوية ومنقار سليم.'],
+        ['ماء نظيف دائم','وعاء واسع يشرب منه ويمكنه التبريد فيه صيفًا.']],
+  avoid:[['لحم مجرد (بقر/دجاج) فقط','يفتقر للكالسيوم ويشوه العظام — خطأ غذائي قاتل شائع.'],
+        ['فئران مسمومة','التسمم الثانوي ينقل السم من الفأر للبومة — لا تستخدم مبيدات حولها.'],
+        ['بقايا طعام البشر','الملح والتوابل سامة — لا استثناء.'],
+        ['إطعام يدوي باليد العارية','منقارها ومخالبها قطعان حقيقية — استخدم ملقطًا طويلًا دائمًا.']],
+  water:'وعاء ماء نظيف كبير، يُغيَّر يوميًا — تحتاجه للشرب والتبريد صيفًا.'},
+ housing:{intro:'لا قفص منزلي للبومة إطلاقًا — تحتاج بيرجًا (حظيرة خشبية) واسعة معزولة.',
+  points:[['البيرج','3×2×2 متر كحد أدنى، بحوائط خشبية أو شبك مغطى تحمي ريشها من التهتك.'],
+        ['مجثم خشبي سميك','خشب طبيعي — أسلاك رفيعة تهتك أقدامها وريشها مع الوقت.'],
+        ['ظل وبرودة','البومة لا تحتمل الشمس الحارقة — ظل دائم وتهوية جيدة.'],
+        ['هدوء تام','بعيدة عن ضوضاء البيت والأطفال — الليل وقت نشاطها ويلزمها سكون نهاري.'],
+        ['أرضية نظيفة','تنظيف دوري للبصيصات والروث — البيئة القذرة مركز أمراض.']]},
+ behavior:{intro:'البومة لا تدلل ولا تعانق — لغتها كله تحذير أو تقييم. تعلّم فرق بينهما.',
+  signals:[['نفخ الجسم وتوسيع العينين','تهديد خوف — ترتجل أن تكون أكبر. ابتعد فورًا بهدوء.','warn'],
+    ['طقطقة منقار حادة','تحذير واضح «ابتعد» — آخر تحذير قبل الهجوم.','warn'],
+    ['إسقاط وفتح الجناحين','وضعية دفاع — لا تقترب من هذه الجهة.','warn'],
+    ['اهتزاز ريش وحركة متقطعة','توتر شديد — أزل مصدر الإزعاج وغادر.','warn'],
+    ['ثبات تام دون حركة','تقييم لك وليس ودًّا — قراراتها تُبنى على هذا السكون.','info'],
+    ['ريش مرتخٍ وعينان شبه مغمضتين نهارًا','راحة نهارية طبيعية — لا تفسّرها كثقة بك.','good']]},
+ handling:[['قفاز جلدي سميك إلزامي','مخالبها الجارحة أخطر من منقارها بكثير — لا مسك بلا قفاز.'],
+  ['الطريقة الصحيحة','امسك من الظهر بقبضة أسفل الجناحين مع دعم قوائمها — لا تسحب أبدًا.'],
+  ['لا تلمس وجهها أو قناعها','الريش الوجهي أدوات سمع دقيقة — لمسه يفسد توجيهها الصوتي مؤقتًا.'],
+  ['جلسات قصيرة بإشراف','أي تعويد أو تدريب عملي يكون بإشراف صقّار أو مختص حياة برية — حصرًا.'],
+  ['لا تعرضها لضيوف أو أطفال','التوتر المتكرر يفكك جهازها العصبي ويرفع سلوك الهجوم.']],
+ health:{intro:'البصيصات هي «تقريرها الصحي اليومي» — راقبها أولًا.',
+  points:[['البصيصات (Pellets)','كرات الفراء والعظام المطرّوقة التي تطرحها يوميًا — غيابها يعني مشكلة هضم فورية.'],
+    ['الريش','ريش مبلل أو منكوش بلا سبب = فحص طبيب حياة برية.'],
+    ['الأظافر والمنقار','تُبلى على خشب خشن طبيعي — الطول الزائد يتطلب قصًا بيطريًا.'],
+    ['فحص دوري','كل 6 أشهر عند طبيب متخصص بالحياة البرية — لا طبيب حيوانات عام.']]},
+ specialist:['رفض الطعام يومًا كاملًا — حالة إسعاف فورية عند الجوارح.',
+  'إسهال أو بصيصات دموية أو مائية.',
+  'جناح مترهل أو سقوط متكرر أثناء محاولة الطيران.',
+  'أي إصابة مخلب أو نزيف — حتى الصغيرة خطرة.',
+  'قبل أي قرار شراء أو تربية — استشر مختص حياة برية وتحقق من الترخيص أولًا.'],
+ training:{intro:'تدريب البومة عملية احترافية خطرة — هذه معلومات عامة فقط، والتنفيذ عملي مع مختص مرخص حصرًا.',
+  items:[['الاستقرار على وجودك','الهدوء الثابت عندها أول «تدريب» — لا صوت عالٍ ولا حركة مفاجئة.'],
+    ['بروتين تغذية ثابت','وقت وملقط ومرحلة — الروتين يخفض توترها.'],
+    ['الوقوف على القفاز','مهارة متقدمة تُدرَّب بإشراف مختص حصرًا.'],
+    ['بيئة ليلية سليمة','سكوت نهاري وإضاءة مناسبة ليلاً — أساس توازنها النفسي.']]},
+ warnings:['الجوارح كائنات برية محمية — امتلاكها وتربيتها خاضع لقوانين محلية صارمة، وقد يكون امتلاكها بلا ترخيص مخالفة جنائية.',
+  'ليست طيورًا أليفة: لا تُدلّل ولا تُحضر للأطفال ولا تعيش داخل المنازل.',
+  'خطأ غذائي واحد (لحم مجرد) قد يسبب تشوهًا عظميًا دائمًا خلال أسابيع.']
+},
+{id:'falcon',name:'الصقر',cat:'raptors',
+ colors:{bg:'#EBE2D2',a:'#8A7358'},
+ desc:'سيد السماء نهارًا ورياضة الصقّارة التراثية — حيوان صيد محترف يحتاج مدرّبًا مرخصًا ووزنًا يوميًا لا «دلعًا».',
+ art:{kind:'side',body:'#8A7358',head:'#6E5A44',belly:'#E9DCC7',wing:'#6E5A44',wing2:'#5A4836',tail:'med',tailC:'#5A4836',speckles:'#8A6F52',beak:'#55606B',brow:true,browC:'#3A2E1F',eyeC:'#F2B33D',legs:'#E8C15A',alt:'صقر'},
+ legal:'الصقارة رياضة منظمة تراثيًا — امتلاك الصقر وتسجيله وتربيته يتطلب إذنًا رسميًا وتسجيلًا في معظم الدول، ويُمارَس عمليًا داخل نوادي الصقّارة.',
+ identify:{intro:'تعرّف على النوع أولًا — الاحتياجات تختلف جذريًا بين الحر والشاهين.',
+  points:[['الحر (الباز)','أهدأ وأسهل للأسر — أجنحة عريضة وذيل طويل وصيد أرضي.'],
+        ['الشاهين','أسرع كائن على الأرض في الغطسة — تخصص جوّي خالص ويتطلب خبرة عالية.'],
+        ['المنقار المعقوف والحاجب','علامة الجوارح النهارية: منقار معقوف أصفر القاعدة وحاجب غامض يعطي نظرة حادة.'],
+        ['مقياس الوزن','لا صقّارة بلا ميزان رقمي دقيق — الوزن يوميًا هو أساس كل شيء.']]},
+ age:{stages:[
+  {label:'فرخ صغير بالعش',title:'فرخ بالعش',text:'فرخ معتمد كليًا على أهله — اقتناء الفرخ الصغير عملية دقيقة تتطلب ترخيصًا وخبرة، وإطعامه الخاطئ يشوّهه دائمًا.'},
+  {label:'فوّه (يحاول الطيران)',title:'فوّه — ناشئ',text:'خرج من العش ويكمل طيرانه على الأرض والأغصان — الأهله قريبون يطعمونه. إن وجدته لا تأخذه فورًا: راقب من بعيد وتواصل مع مختص.'},
+  {label:'ناضج قادر على الطيران الكامل',title:'صقر ناضج',text:'صيّاد كامل الاحتياجات — التعامل معه عمليًا يكون داخل إطار صقّارة مرخصة مع مدرّب معتمد، لا بيوتًا عادية.'}]},
+ feeding:{intro:'لحم طازج كامل + ضبط وزن يومي — الصقر «معدة بطائرة».',
+  good:[['لحم طازج كامل','حمام وسمان وأرنب صغير مع عظامها الغضروفية.'],
+        ['وزن يومي دقيق','على ميزان رقمي قبل كل تدريب — أساس قرارات الإطعام والطيران.'],
+        ['ماء وحمام رمل','استحمام ماء ورمل لتنظيف الريش وتقوية عضلاته.'],
+        ['تنوع الفرائس','تنويع بين طيور وثدييات صغيرة حسب موسمه.']],
+  avoid:[['لحم مبرد بارد مباشرة','تقلّص المعدة ويسبب قئًا — قرّبه لحرارة معتدلة قبل التقديم.'],
+        ['أطعمة مالحة ومتبولة','جهازه لا يتحملها — لا استثناءات.'],
+        ['الإفراط بالدهون','فخذ الدجاج الدهني كأساس يُضعفه ويتربّك وزنه.'],
+        ['إطعام يدوي قريب من المنقار','منقاره المشرط سريع — استخدم ملقطًا دائمًا.']],
+  water:'وعاء ماء نظيف وحمام رمل أسبوعي — نظافة الريش أساس أداء الطيران.'},
+ housing:{intro:'حظيرة (فريج) واسعة هادئة — بيئة الصقر تُقاس بالمساحة والسكوت.',
+  points:[['الحظيرة','واسعة بعيدًا عن الزحام والضوضاء، بسقف مظلل وجدران آمنة للريش.'],
+        ['قضيب مبطن (سجادة)','يحمي أظافره وأذياله من التهتك — لا أسلاك رفيعة.'],
+        ['ظل دائم','الشمس المباشرة الطويلة تُهلكه — مظلل دائم مع شمس اختيارية قصيرة.'],
+        ['مقياس وزن إلزامي','أداة لا تقل أهمية عن الطعام نفسه.'],
+        ['سكوت تام','حركة مفاجئة أمام عينه = توتر وسلوك هجومي محتمل.']]},
+ behavior:{intro:'الصقر يخبرك بحالته بجسمه كله — كل حركة لها معنى في مدرسة الصقّارة.',
+  signals:[['رفرفة جناحين مع شدّ وحماس','فرح وتوقع طعام — لحظة تدريب مثالية.','good'],
+    ['هز رأس وتوجيه العين','تقييم هدف أو تركيز صيد — لا تشوش عليه.','info'],
+    ['قبضة الأظافر بالقفاز أثناء الجلوس','اطمئنان وثقة — أفضل مؤشر على راحته معك.','good'],
+    ['ريش منتفخ مع شمس','استحمام شمسي — سلوك صحي مريح له.','good'],
+    ['نظر جامد مع صمت تام','يراقب شيئًا حقيقيًا — لا تداخله ولا تفسّره كود.','info'],
+    ['ريش منكوش مع خمول ورفض طعام','توتر أو مرض — استشر مختصًا فورًا.','warn']]},
+ handling:[['قفاز صقّارة سميك','أساسي دائمًا — حتى الصقر «المرتاح» يترك أثرًا حقيقيًا بيده.'],
+  ['وضعية الحمل','اجلس مستقيمًا وحمل الصقر بذراع مرفوعة قليلًا — توازنك هو توازنه.'],
+  ['الوزن قبل كل لمس','الصقر الجائع هجومي — وزنه يحدد اليوم كله.'],
+  ['لا تُطلق للطيران بمفردك','أول رحلة تدريب لا تُنفذ إلا مع مدرّب صقّارة مرخص.'],
+  ['لا تعرضه لكلاب أو ضوضاء أطفال','التوتر المتراكم يكسر استقراره ويستدعي ردة فعل حادة.']],
+ health:{intro:'الصقر يمرض بصمت — الميزان والفحص الدوري هما درعك.',
+  points:[['فحص براز شهري','للكشف عن الطفيليات مبكرًا — عيّنة دورية عند الطبيب البيطري المتخصص.'],
+    ['تغيّر الريش السنوي','يخفض أداء الطيران مؤقتًا — اضبط التدريب خلاله.'],
+    ['الأظافر','تُبلى بالحظيرة الخشبية — الطول الزائد قصّه بيطري.'],
+    ['العين','عين صافية شرط لأي رحلة — غمامة واحدة توقف التدريب فورًا.']]},
+ specialist:['رفض الطعام أو فقدان وزن سريع خلال يومين.',
+  'إصابة جناح أو سقوط أثناء الطيران.',
+  'تنفس بفتح الفم داخل البيت — إجهاد أو مرض.',
+  'عين غائمة أو مغلقة.',
+  'أي خطوة تدريب طيران عملي — بمدرّب مرخص حتمًا.'],
+ training:{intro:'الصقارة احتراف متكامل — هذه خارطة عامة، والتنفيذ يحدث داخل نادٍ صقّارة مع مدرّب معتمد.',
+  items:[['ضبط الوزن اليومي','الميزان قبل الطعام كل صباح — أي تدريب يبدأ من هنا.'],
+    ['الاستقرار على القفاز','مهارة أولى تُبنى بالصبر وبروتين ثابت بإشراف مدرّب.'],
+    ['المنارة الأولى','منارة داخل حظيرة مغلقة بمعرفة صقّار — لا تُجرّب بنفسك.'],
+    ['رحلات تدريجية','بعد موافقة المدرّب فقط، بمسافات تزداد بحسب الوزن والردة.']]},
+ warnings:['امتلاك الصقر وتسجيله يتطلب إذنًا رسميًا في معظم دول الخليج والعالم — الصقارة بلا تسجيل مخالفة.',
+  'خطأ في الطعام أو الوزن قد يقتل الصقر خلال يومين — الميزان ليس رفاهية.',
+  'لا تُطلق الصقر للطيران قبل موافقة مدرّب مرخص — فقدان الصقر خسارة قانونية وبيئية.']
+},
+{id:'eagle',name:'العقاب',cat:'raptors',
+ colors:{bg:'#EDE3D0',a:'#5C4429'},
+ desc:'ملك الجوارح: مخالبه بضغط عضّة دبّ ورؤوسه ذهبية مميزة — كائن يحكم السماء، لا يُملك بلا ترخيص حكومي وفريق مختص.',
+ art:{kind:'side',body:'#5C4429',head:'#C99A3F',belly:'#6E5432',wing:'#4A371F',wing2:'#3E2E1A',tail:'med',tailC:'#4A371F',beak:'#E8B830',brow:true,browC:'#2E2212',eyeC:'#F2B33D',legs:'#E8C15A',alt:'عقاب ذهبي'},
+ legal:'امتلاك العقاب ممنوع أو يتطلب ترخيصًا حكوميًا خاصًا في معظم الدول العربية والعالم — وقد تكون العقوبات جنائية. أي تعامل عملي يكون عبر جهات ومؤسسات مرخصة حصرًا.',
+ identify:{intro:'الذهبي هو أشهر العقاب وأكثرها تداولًا بالتراث — تعرّف على علاماته وحدود خطورته.',
+  points:[['الرأس الذهبي','ريش ذهبي-بني على الرأس والرقبة يميز العقاب الذهبي فورًا عن باقي الجوارح.'],
+        ['الحجم','باع الجناح قد يصل إلى أكثر من مترين — كتلة حقيقية لا تُقارن بالصقور.'],
+        ['المخالب','قوة قبضة هائلة قادرة على كسر العظام — أخطر جزء في جسمه.'],
+        ['المنقار الضخم','منقار معقوف أصفر ضخم مقصوص بأعلى — أداة تفكيك احترافية.']]},
+ age:{stages:[
+  {label:'فرخ بالعش',title:'فرخ بالعش',text:'فرخ ضخم معتمد على أهله — أي اقتناء أو لمس في هذه المرحلة مخالفة قانونية في الغالب وخطر مباشر عليك وعليه.'},
+  {label:'ناشئ يتعلم الطيران',title:'ناشئ مبتدئ',text:'يغادر العش ويكمل تدريبه الطيراني على الأرض بمراقبة أهله — إن وجدته لا تحمله: اتصل بمختص حياة برية فورًا.'},
+  {label:'عقاب ناضج',title:'عقاب ناضج',text:'صيّاد متمكن بحدود خطورة قصوى — التعامل معه عمليًا يكون داخل مؤسسات مرخصة وفِرق مختصين حصرًا.'}]},
+ feeding:{intro:'فرائس كاملة محسوبة أسبوعيًا — التغذية هنا علم دقيق بلا تجارب.',
+  good:[['فرائس كاملة','أرنب وخنزير صحراوي وطيور كبيرة — تقدم كاملة بعظامها بجدول أسبوعي محسوب.'],
+        ['عظام وحوافر صغيرة','تقوية الفك والمخالب وتحفيز سلوك التفكيك الطبيعي.'],
+        ['حصص محسوبة بالوزن','زيادة أو نقصان بالوزن يعني خطرًا صحيًا واضطراب سلوك صيد.'],
+        ['ماء غمر عميق','يحتاج وعاءً واسعًا يستطيع الغمر فيه للاستحمام الكامل.']],
+  avoid:[['لحم مجرد أو فاسد أو مملح','فشل عظمي وتسمم — لا استثناء أبدًا.'],
+        ['إطعام يدوي قريب من المنقار','منقاره يفصل المفاصل — لا يد عارية أبدًا قرب رأسه.'],
+        ['أطعمة بشرية','كليته وكبده لا يتحملان الملح والتوابل إطلاقًا.'],
+        ['تجارب غذائية','أي إضافة غير مدروسة تُراجع مع بيطري حياة برية أولًا.']],
+  water:'منطقة ماء واسعة تسمح بالغمر والاستحمام الكامل — نظيفة يوميًا.'},
+ housing:{intro:'حظيرة فولاذية ضخمة — العقاب يهدم أي قفص عادي خلال أيام.',
+  points:[['الحظيرة','لا تقل عن 6×3×3 متر بسور فولاذي متين وسقف مظلل.'],
+        ['مجاثم سميكة','خشب طبيعي متعدد الارتفاعات — تدعم أظافره الهائلة.'],
+        ['حوائط مانعة','تمنع اقتراب المارّة والمفاجآت البصرية — خطوط رؤية آمنة.'],
+        ['أرضية رملية نظيفة','سهلة التنظيف وصحية لأقدامه الضخمة.'],
+        ['منطقة خروج آمنة','بوابة مزدوجة تمنع هروبه أثناء الدخول والخروج.']]},
+ behavior:{intro:'لا ودّ ولا تدليل — لغة العقاب تحذير أو مراقبة، وكل إشارة يجب أن تُقرأ صحيحًا.',
+  signals:[['فتح جناحين ورفع الكتفين','تهديد جاهز — ابتعد فورًا بهدوء ودون ظهر مقلوب.','warn'],
+    ['طقطقة منقار وتسليط عين','إعلان جاهزية هجوم — لا تكمل اقترابك.','warn'],
+    ['صمت مع نظر جانبية ثابتة','مراقبة محسوبة — لا تفسّرها كألفة.','info'],
+    ['رفرفة متوازنة وميل بالحظيرة','يحتاج تطايرًا — طاقة مكبوتة تتحول توترًا سريعًا.','info'],
+    ['ريش مرتخٍ وعين شبه مغمضة','راحة نهارية — لا تعنِ بالقرب دون داعٍ.','good'],
+    ['ريش منكوش وخمول','توتر أو مرض — فحص فوري من بيطري حياة برية.','warn']]},
+ handling:[['لا تعمل وحدك أبدًا','العقاب الجائع قادر على قطع إصبع — التعامل ثنائي دائمًا (شخصان على الأقل).'],
+  ['قفازات مزدوجة ودرع كامل','درع ذراع احترافي وقفازات مزدوجة — لا بدائل منزلية.'],
+  ['تدريب الطيران بالمنارة','طريقة المنارة لا تُنفذ إلا بمدرب معتمد — حصرًا وبلا استثناء.'],
+  ['لا تعرضه لأحد خارج المحترفين','ضيوف وفضوليون = حوادث — الحظيرة مغلقة على الجميع.'],
+  ['حركة هادئة دائمًا','كل حركة مفاجئة قربه تُقرأ تحديًا — التحرك ببطء قاعدة صارمة.']],
+ health:{intro:'الوقاية عند العقاب تعني جدولًا بيطريًا صارمًا مع مؤسسة مرخصة.',
+  points:[['فحص وزن أسبوعي','تغير الوزن أول مؤشر على مرض أو خلل تغذية.'],
+    ['قص المنقار والأظافر','عمل بيطري متخصص حصرًا — محاولة منزلية خطر مباشر.'],
+    ['الطفيليات الخارجية','شائعة بالريش — فحص دوري وعلاج مختص.'],
+    ['الفحص السنوي الشامل','أشعة ودم عند طبيب حياة برية — لا طبيب عام.']]},
+ specialist:['أي إصابة أو نزيف — فورًا ودون تردد.',
+  'رفض طعام يومين متتاليين.',
+  'سقوط أو اختلال أثناء الطيران.',
+  'تورم مخلب أو منقار مشقق.',
+  'كل قرار قانوني: الترخيص والامتلاك — عبر الجهات الرسمية حصرًا.'],
+ training:{intro:'لا تدريب منزلي للعقاب إطلاقًا — كل ما يلي معلومات عامة، والتنفيذ ضمن مؤسسات وفرق مرخصة.',
+  items:[['التعامل الثنائي دائمًا','شخصان على الأقل في أي جلسة — قاعدة لا تُخالف.'],
+    ['التعويد على الحضور','قدوم مختصين ثابتين بروتين محدد داخل الحظيرة بحدود آمنة.'],
+    ['تدريب الطيران','عبر مدرب معتمد حصرًا وبمعدات احترافية كاملة.'],
+    ['بروتين غذائي ثابت','جدول صارم دون تجارب — أساس استقراره السلوكي.']]},
+ warnings:['امتلاك العقاب ممنوع أو يحتاج ترخيصًا حكوميًا خاصًا في معظم الدول — العقوبة قد تكون جنائية.',
+  'خطورة مباشرة على الأشخاص والحيوانات — ليس طائرًا منزليًا بأي شكل أو صيغة.',
+  'حتى المحترفون يتعاملون معه بالثنائي والمعدات الكاملة — لا تدخل حظيرته وحدك أبدًا.']
+}
+];
+
+/* توحيد خيارات العمر للأليفة */
+DB.forEach(b=>{if(!b.age.stages){b.age.options=AGE_LABELS;b.age.mids=AGE_MID;}});
+const getBird=id=>DB.find(b=>b.id===id);
+const MY=()=>store('dlt-my')||[];
+
+/* ---------- 4) أدوات عامة ---------- */
+const $=s=>document.querySelector(s);
+const app=$('#app');
+function store(k,v){if(v===undefined){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}localStorage.setItem(k,JSON.stringify(v))}
+function toast(msg,ic='check'){$('#toasts').insertAdjacentHTML('beforeend',`<div class="toast">${icon(ic,16)}${msg}</div>`);const t=$('#toasts').lastElementChild;setTimeout(()=>{t.style.opacity='0';t.style.transition='.4s'},2600);setTimeout(()=>t.remove(),3100)}
+
+/* ---------- 5) الثيم ---------- */
+function setTheme(t){document.documentElement.dataset.theme=t;store('dlt-theme',t);$('#themeBtn').innerHTML=icon(t==='dark'?'sun':'moon',20);}
+setTheme(store('dlt-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+ $('#themeBtn').onclick=()=>{const nt=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(nt);toast(nt==='dark'?'وضع ليلي مفعّل':'وضع نهاري مفعّل',nt==='dark'?'moon':'sun');};
+
+/* ---------- 6) التقييم العمري ---------- */
+function assess(b,ageIdx,eats){
+  if(b.age.stages){
+    const st=b.age.stages[ageIdx]||b.age.stages[0];
+    let text=st.text;
+    if(eats==='no'&&ageIdx>0)text+=' وتذكّر: أي إطعام يدوي للجوارح عملية دقيقة خطرة — لا تحاول دون مختص.';
+    if(eats==='yes'&&ageIdx===0)text+=' وإذن ربما يكون متقدمًا على عمره الظاهري — راقبه مع مختص.';
+    return {title:st.title,text,tone:'warn'};
+  }
+  const m=b.age.mids[ageIdx];
+  let r={};
+  if(m<b.age.min)r={title:'غالبًا ما يزال فرخًا',text:b.age.chickNote,tone:'warn'};
+  else if(m<=b.age.max)r={title:'قد يكون في مرحلة الفطام',text:b.age.weanNote,tone:'info'};
+  else r={title:'غالبًا مفطوم',text:b.age.weanedNote,tone:'good'};
+  if(r.tone!=='warn'&&eats==='no')return {title:'لم يفطم فعليًا بعد',text:'العمر وحده لا يكفي: الطائر الذي لا يأكل من الصحن بنفسه لم يفطم فعليًا حتى لو تجاوز العمر المعتاد — قد يحتاج إطعامًا يدويًا بطريقة خاصة. راجع طبيبًا بيطريًا مختصًا بالطيور قبل إطعامه بنفسك.',tone:'warn'};
+  if(r.tone==='warn'&&eats==='yes')r.text+=' ويبدو أن طائرك متقدم على أقرانه — تأكد فقط أن وزنه يزداد باستمرار.';
+  if(r.tone==='info'&&eats==='yes')r.text+=' وبما أنه يأكل بنفسه، فأنت على أطراف الفطام — قلّل الإطعام اليدوي تدريجيًا.';
+  return r;
+}
+
+/* ---------- 7) الراوتر والصفحات ---------- */
+const state={ui:{},uiTab:{}};
+function route(){const p=location.hash.replace(/^#\/?/,'').split('/');return{view:p[0]||'home',a:p[1],b:p[2]}}
+function go(h){location.hash=h}
+
+function render(){
+  const r=route();
+  let html='';
+  if(r.view==='home')html=viewHome();
+  else if(r.view==='cat'&&getCat(r.a))html=viewCat(r.a);
+  else if(r.view==='bird'&&getBird(r.a))html=viewBird(r.a);
+  else if(r.view==='train')html=viewTrain(r.b);
+  else html=viewHome();
+  app.innerHTML=html;
+  window.scrollTo(0,0);
+  markNav(r);
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.nav===(r.view==='train'?'train':r.a||'home')));
+}
+
+function markNav(r){/* handled above */}
+
+function viewHome(){
+  return `
+  <section class="hero wrap">
+    <div class="hero-txt">
+      <span class="kicker anim">${icon('feather',15)} دليلك التفاعلي للعناية بالطيور</span>
+      <h1 class="anim" style="animation-delay:.08s"><span class="logo-b">${art({art:CANARY_ART,colors:{}},true)}</span>دلع طيرك</h1>
+      <p class="tagline anim" style="animation-delay:.16s">اعرف طيرك… واهتم بيه صح ${icon('heart',22)}</p>
+      <p class="sub anim" style="animation-delay:.22s">اختر طائرك، أخبرنا عن عمره وحالته، وسنبني لك خطة تغذية وتدريب وسكن وفهم لغته — خطوة بخطوة، بطريقة آمنة تناسب الأطفال والكبار.</p>
+      <div class="hero-cta anim" style="animation-delay:.3s">
+        <button class="btn" data-go="#/cat/pets">${icon('heart',18)} ابدأ مع طائرك</button>
+        <button class="btn ghost" data-go="#/train">${icon('award',18)} تدريب طيرك</button>
+      </div>
+    </div>
+    <div class="hero-art anim" style="animation-delay:.15s">
+      ${heroScene()}
+    </div>
+  </section>
+  <section class="wrap sec">
+    <div class="duo stagger">
+      <button class="duo-card pets-c" data-go="#/cat/pets">
+        <div class="arts">${art(getBird('budgie'))}${art(getBird('canary'))}${art(getBird('lovebird'))}</div>
+        <div><h2>الطيور الأليفة</h2><p>الكوكتيل، البادجي، الببغاء، طيور الحب، الكناري، الحمام، والعصافير.</p><span class="go">اكتشف الأنواع ${icon('back',16)}</span></div>
+      </button>
+      <button class="duo-card rap-c" data-go="#/cat/raptors">
+        <div class="arts">${art(getBird('owl'))}${art(getBird('falcon'))}${art(getBird('eagle'))}</div>
+        <div><h2>الجوارح</h2><p>البومة والصقر والعقاب — معلومات متخصصة وتحذيرات قانونية وأمانة لا تُغفل.</p><span class="go">ادخل بمسؤولية ${icon('back',16)}</span></div>
+      </button>
+    </div>
+  </section>
+  <section class="wrap sec how">
+    <h2>كيف يعمل دلع طيرك؟</h2>
+    <ol class="steps3">
+      <li><b>اختر طائرك</b><span>من الأليفة أو الجوارح — لكل نوع صفحته الخاصة.</span></li>
+      <li><b>أخبرنا عن عمره وحالته</b><span>هل يأكل بنفسه؟ هل يخاف من اليد؟ منذ متى معك؟</span></li>
+      <li><b>طبّق الخطة</b><span>تغذية وسكن وتدريب وفهم لسلوكه — خطوة بخطوة.</span></li>
+    </ol>
+    <div class="notice">
+      ${icon('warn',26)}
+      <div><b>تنبيه مهم:</b> الجوارح ليست طيورًا أليفة — تربيتها قد تكون خاضعة للقوانين المحلية وتحتاج خبرة ومختصين.</div>
+      <button class="btn warn" data-go="#/cat/raptors">اطّلع بمسؤولية</button>
+    </div>
+  </section>`;
+}
+
+function heroScene(){
+  const b=art({art:CANARY_ART},true);
+  return `<div style="position:relative;display:inline-block">
+    <svg viewBox="0 0 260 210" style="position:absolute;inset:0;overflow:visible" aria-hidden="true">
+      <path d="M14,158 Q130,136 248,160" stroke="#7A5A3A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <g class="leaf"><path d="M52,150 C40,128 22,124 10,128 C22,146 38,154 52,150 Z" fill="#7FA85C"/></g>
+      <g class="leaf" style="animation-delay:1.2s"><path d="M196,146 C210,126 228,122 240,126 C228,144 210,152 196,146 Z" fill="#6B9A4E"/></g>
+    </svg>
+    <div style="width:min(300px,72vw)">${b}</div>
+  </div>`;
+}
+
+function getCat(id){return ['pets','raptors'].includes(id)?id:null}
+const CAT_NAME={pets:'الطيور الأليفة',raptors:'الجوارح'};
+
+function birdCard(b){
+  const isMy=MY().includes(b.id);
+  return `<button class="bcard ${b.popular?'pop':''}" style="--b:${b.colors.bg};--a:${b.colors.a}" data-go="#/bird/${b.id}">
+    <div class="bwrap">
+      <div class="bmedal">${art(b)}</div>
+      <h3>${b.name} ${isMy?`<span class="my" title="طائري">${icon('star',17)}</span>`:''}</h3>
+      <p>${b.desc}</p>
+    </div>
+    <span class="opn">افتح صفحته ${icon('back',14)}</span>
+  </button>`;
+}
+
+function viewCat(cat){
+  const birds=DB.filter(b=>b.cat===cat);
+  return `
+  <section class="wrap">
+    <div class="page-head anim">
+      <div><h1>${CAT_NAME[cat]}</h1><p>${cat==='pets'?'اختر طائرك لفتح صفحته الخاصة: عمره، تغذيته، قفصه، وتعويده على يدك.':'قسم متخصص بمعلومات الجوارح — اقرأ التحذيرات القانونية أولًا.'}</p></div>
+      <div class="searchbar">${icon('search',17)}<input id="catSearch" type="text" placeholder="ابحث في ${CAT_NAME[cat]}…"></div>
+    </div>
+    ${cat==='raptors'?`<div class="raptor-banner anim">${icon('warn',24)}<div><b>مهم جدًا:</b> الجوارح ليست مثل الطيور الأليفة. التعامل معها وتربيتها قد يكون خاضعًا للقوانين المحلية، ويحتاج خبرة ومختصين. كل ما في هذا القسم معلومات عامة للتوعية فقط — لا تعليمات تنفيذية تُجرّب بمفردك.</div></div>`:''}
+    <div class="grid stagger" id="catGrid">
+      ${birds.map(birdCard).join('')}
+      <button class="bcard soon" onclick="toast('قريبًا — قاعدة بيانات «دلع طيرك» مصممة لتوسيع أنواع جديدة بسهولة','spark')">
+        <div style="text-align:center"><h3 style="justify-content:center;color:var(--muted)">${icon('spark',18)} أنواع أخرى قريبًا</h3><p>نضيف أنواعًا جديدة باستمرار — اقترح نوعًا يهمك!</p></div>
+      </button>
+    </div>
+  </section>`;
+}
+
+const TABS_PETS=[['age','العمر والفطام','scale'],['feeding','التغذية','food'],['housing','السكن والقفص','home'],['taming','التعوّد على اليد','hand'],['behavior','فهم لغته','eye'],['training','التدريب','award'],['health','الصحة','shield'],['warnings','تنبيهات','warn']];
+const TABS_RAP=[['identify','التعرف عليه','search'],['age','العمر التقريبي','scale'],['feeding','الغذاء المناسب','food'],['housing','البيئة المناسبة','home'],['behavior','علامات الخوف','eye'],['handling','التعامل الآمن','hand'],['health','الرعاية الصحية','shield'],['specialist','متى تتواصل مع مختص','chat'],['warnings','تحذيرات وقانون','warn']];
+
+function viewBird(id){
+  const b=getBird(id);
+  store('dlt-last',id);
+  state.ui={birdId:id,age:null,eats:null};
+  if(!state.uiTab[id])state.uiTab[id]=b.cat==='raptors'?'identify':'age';
+  const isMy=MY().includes(b.id);
+  return `
+  ${b.cat==='raptors'?`<div class="wrap"><div class="raptor-banner anim">${icon('warn',24)}<div><b>تحذير قانوني وأخلاقي:</b> ${b.legal} كل ما في هذه الصفحة معلومات توعوية عامة — لا تعليمات تنفيذية تُجرّب بمفردك.</div></div></div>`:''}
+  <section class="wrap">
+    <div class="backrow anim"><button class="backbtn" data-go="#/cat/${b.cat}">${icon('back',16)} عودة إلى ${CAT_NAME[b.cat]}</button></div>
+    <div class="bird-hero anim" style="--b:${b.colors.bg};--a:${b.colors.a};animation-delay:.06s">
+      <div class="deco">${art(b)}</div>
+      <div class="info">
+        <span class="cat-chip">${icon(b.cat==='raptors'?'warn':'heart',14)} ${CAT_NAME[b.cat]}</span>
+        <h1>${b.name}</h1>
+        <p class="desc">${b.desc}</p>
+        <button class="mybtn ${isMy?'on':''}" data-star="${b.id}">${icon('star',16)} ${isMy?'طائري المحفوظ':'هذا طائري — احفظه'}</button>
+      </div>
+      <div class="arts">${art(b)}</div>
+    </div>
+    <div id="quizBox" class="anim" style="animation-delay:.12s">${quizHTML(b)}</div>
+    <div class="tabs anim" style="animation-delay:.16s" id="tabsRow">
+      ${(b.cat==='raptors'?TABS_RAP:TABS_PETS).map(t=>`<button class="tab ${state.uiTab[id]===t[0]?'on':''}" data-tab="${t[0]}">${icon(t[2],16)} ${t[1]}</button>`).join('')}
+    </div>
+    <div class="tabbody" id="tabBody">${tabHTML(b)}</div>
+  </section>`;
+}
+
+function quizHTML(b){
+  const opts=b.age.stages?b.age.stages.map(s=>s.label):AGE_LABELS;
+  const r=state.ui.age!=null?assess(b,state.ui.age,state.ui.eats):null;
+  return `<div class="quiz">
+    <h2>${icon('scale',22)} كم عمر طيرك؟</h2>
+    <p class="hint">حدّد عمره وحالته، وسنقيّم مرحلته ونوجّهك لما يناسبها.</p>
+    <div class="qrow"><label>العمر التقريبي</label>
+      <div class="chips">${opts.map((o,i)=>`<button class="chip ${state.ui.age===i?'sel':''}" data-age="${i}">${o}</button>`).join('')}</div></div>
+    <div class="qrow"><label>هل يأكل من الصحن بنفسه؟</label>
+      <div class="chips">${[['yes','نعم يأكل بنفسه'],['no','لا، لا يأكل بنفسه'],['unsure','لم ألاحظ بعد']].map(x=>`<button class="chip ${state.ui.eats===x[0]?'sel':''}" data-eats="${x[0]}">${x[1]}</button>`).join('')}</div></div>
+    <div id="quizOut">${r?`<div class="qout ${r.tone}"><b>${r.title}</b><br>${r.text}</div>
+      <div class="vet-note">${icon('shield',18)}<span>تحديد الفطام لا يعتمد على العمر وحده، بل أيضًا على سلوك الطائر وقدرته على تناول الطعام بنفسه — عند الشك، استشر طبيبًا بيطريًا مختصًا بالطيور.</span></div>`:''}</div>
+  </div>`;
+}
+
+function refreshQuiz(){
+  const b=getBird(state.ui.birdId);
+  const box=$('#quizBox');if(!box)return;
+  box.innerHTML=quizHTML(b);
+}
+
+function tabHTML(b){
+  const t=state.uiTab[b.id];
+  if(b.cat==='pets')return tabPets(b,t);
+  return tabRaptor(b,t);
+}
+
+function pts(list,ic='check',bad=false){return `<ul class="pts">${list.map(p=>{
+  if(Array.isArray(p))return `<li class="${bad?'bad':''}">${icon(bad?'warn':ic,17)}<div><b class="t">${p[0]}</b><span class="d">${p[1]}</span></div></li>`;
+  return `<li class="${bad?'bad':''}">${icon(bad?'warn':ic,17)}<div>${p}</div></li>`;
+}).join('')}</ul>`}
+
+function tabPets(b,t){
+  if(t==='age')return `
+    <h3 class="sect">${icon('scale',19)} مراحل العمر عند ${b.name}</h3>
+    <p class="lead">أجب على السؤالين أعلاه (العمر + الأكل بنفسه) لتظهر لك تقدير مرحلة طائرك مباشرة.</p>
+    <div style="margin-top:8px">
+      <div class="stagerow"><span class="st" style="background:var(--amber)">فرخ</span><p>${b.age.chickNote}</p></div>
+      <div class="stagerow"><span class="st" style="background:#D98A2B">فطام</span><p>${b.age.weanNote}</p></div>
+      <div class="stagerow"><span class="st" style="background:#5FA36B">مفطوم</span><p>${b.age.weanedNote}</p></div>
+    </div>
+    <div class="two">
+      <div class="sign-col chick"><h4>${icon('spark',17)} علامات أنه ما زال فرخًا</h4><ul>${CHICK_SIGNS.map(s=>`<li>${icon('warn',14)}<span>${s}</span></li>`).join('')}</ul></div>
+      <div class="sign-col weaned"><h4>${icon('check',17)} علامات الطائر المفطوم</h4><ul>${WEANED_SIGNS.map(s=>`<li>${icon('check',14)}<span>${s}</span></li>`).join('')}</ul></div>
+    </div>
+    <div class="vet-note">${icon('shield',18)}<span>هذه العلامات إرشادية — تحديد الفطام الحقيقي يعتمد على سلوك طائرك وقدرته على الأكل بنفسه، وعند الشك استشر طبيبًا بيطريًا مختصًا بالطيور.</span></div>`;
+  if(t==='feeding')return `
+    <h3 class="sect">${icon('food',19)} التغذية</h3><p class="lead">${b.feeding.intro}</p>
+    ${pts(b.feeding.good)}<h3 class="sect" style="color:var(--red)">${icon('warn',19)} تجنّب تمامًا</h3>${pts(b.feeding.avoid,'warn',true)}
+    <h3 class="sect">${icon('pulse',19)} الماء</h3><ul class="pts"><li>${icon('pulse',17)}<div>${b.feeding.water}</div></li></ul>`;
+  if(t==='housing')return `
+    <h3 class="sect">${icon('home',19)} السكن والقفص</h3><p class="lead">${b.housing.intro}</p>${pts(b.housing.points,'home')}`;
+  if(t==='taming')return tamingHTML(b);
+  if(t==='behavior')return `
+    <h3 class="sect">${icon('eye',19)} فهم لغة طائرك</h3><p class="lead">${b.behavior.intro}</p>
+    ${b.behavior.signals.map(s=>`<div class="sig ${s[2]}"><div class="ic-w">${icon(s[2]==='warn'?'warn':s[2]==='good'?'heart':'eye',20)}</div><div><b>${s[0]}</b><span>${s[1]}</span></div></div>`).join('')}`;
+  if(t==='training')return trainingHTML(b);
+  if(t==='health')return `<h3 class="sect">${icon('shield',19)} الرعاية الصحية</h3><p class="lead">${b.health.intro}</p>${pts(b.health.points,'shield')}
+    <div class="vet-note">${icon('shield',18)}<span>أي تغيّر مفاجئ في الأكل أو الوزن أو النشاط يستحق زيارة طبيب بيطري مختص بالطيور — لا انتظار.</span></div>`;
+  if(t==='warnings')return `<div class="warnbox"><h4>${icon('warn',19)} تنبيهات خاصة بـ${b.name}</h4><ul>${b.warnings.map(w=>`<li>${icon('warn',15)}<span>${w}</span></li>`).join('')}</ul></div>`;
+  return '';
+}
+
+function tamingHTML(b){
+  const done=store('dlt-taming')||{};const arr=done[b.id]||[];
+  const n=arr.filter(Boolean).length,pct=Math.round(n/b.taming.steps.length*100);
+  return `<h3 class="sect">${icon('hand',19)} تعويد ${b.name} على اليد</h3><p class="lead">${b.taming.intro} — انقر على كل خطوة بعد إنجازها لتتبع تقدمك.</p>
+  <div class="prog"><div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+  <div class="lbl"><span>${n} من ${b.taming.steps.length} خطوات</span><span>${pct===100?'مكتمل — أحسنت!':pct+'%'}</span></div></div>
+  <ol class="steps-list">${b.taming.steps.map((s,i)=>`<li class="${arr[i]?'done':''}" data-step="${i}"><span class="stx">${s}</span></li>`).join('')}</ol>
+  <button class="reset-steps" data-reset-steps="${b.id}">${icon('refresh',14)} إعادة ضبط التقدم</button>`;
+}
+
+function toggleStep(i){
+  const id=state.ui.birdId,b=getBird(id);
+  const all=store('dlt-taming')||{};const arr=all[id]||[];
+  arr[i]=!arr[i];all[id]=arr;store('dlt-taming',all);
+  if(arr.filter(Boolean).length===b.taming.steps.length)toast('أحسنت! أكملت كل خطوات التعوّد مع '+b.name,'star');
+  $('#tabBody').innerHTML=tabHTML(b);
+}
+
+function trainingHTML(b){
+  const isRap=b.cat==='raptors';
+  return `<h3 class="sect">${icon('award',19)} تدريب ${b.name}</h3><p class="lead">${b.training.intro}</p>
+  ${isRap?`<div class="raptor-banner" style="margin-top:14px">${icon('warn',22)}<div><b>للجوارح:</b> هذه معلومات عامة فقط. أي تدريب عملي يتطلب مدربًا أو صقّارًا مرخصًا ومعدات احترافية — لا تجرّب بنفسك.</div></div>`:''}
+  <ol class="timeline">${b.training.items.map((it,i)=>`<li><span class="num">${i+1}</span><b>${it[0]}</b><span>${it[1]}</span></li>`).join('')}</ol>
+  <div class="switcher"><span style="font-weight:700;font-size:.88rem;color:var(--muted);align-self:center">خطة نوع آخر:</span>${DB.filter(x=>x.id!==b.id).map(x=>`<button class="chip" data-go="#/train/${x.id}">${x.name}</button>`).join('')}</div>`;
+}
+
+function tabRaptor(b,t){
+  if(t==='identify')return `<h3 class="sect">${icon('search',19)} التعرف على نوع ${b.name}</h3><p class="lead">${b.identify.intro}</p>${pts(b.identify.points,'search')}`;
+  if(t==='age')return `<h3 class="sect">${icon('scale',19)} العمر التقريبي</h3><p class="lead">اختر مرحلة طائرك من الأسئلة أعلى الصفحة لتظهر التوجيهات المناسبة.</p>
+    ${b.age.stages.map(s=>`<div class="stagerow"><span class="st" style="background:var(--amber)">${s.title}</span><p>${s.text}</p></div>`).join('')}
+    <div class="vet-note">${icon('shield',18)}<span>عند الشك في العمر أو الحالة — خاصة مع الجوارح — استشر مختص حياة برية أو بيطريًا متخصصًا فورًا.</span></div>`;
+  if(t==='feeding')return `<h3 class="sect">${icon('food',19)} الغذاء المناسب</h3><p class="lead">${b.feeding.intro}</p>${pts(b.feeding.good)}
+    <h3 class="sect" style="color:var(--red)">${icon('warn',19)} خطر وممنوع</h3>${pts(b.feeding.avoid,'warn',true)}
+    <h3 class="sect">${icon('pulse',19)} الماء</h3><ul class="pts"><li>${icon('pulse',17)}<div>${b.feeding.water}</div></li></ul>`;
+  if(t==='housing')return `<h3 class="sect">${icon('home',19)} البيئة المناسبة</h3><p class="lead">${b.housing.intro}</p>${pts(b.housing.points,'home')}`;
+  if(t==='behavior')return `<h3 class="sect">${icon('eye',19)} علامات الخوف والتوتر</h3><p class="lead">${b.behavior.intro}</p>
+    ${b.behavior.signals.map(s=>`<div class="sig ${s[2]}"><div class="ic-w">${icon(s[2]==='warn'?'warn':s[2]==='good'?'heart':'eye',20)}</div><div><b>${s[0]}</b><span>${s[1]}</span></div></div>`).join('')}`;
+  if(t==='handling')return `<h3 class="sect">${icon('hand',19)} التعامل الآمن</h3>${pts(b.handling,'hand')}`;
+  if(t==='health')return `<h3 class="sect">${icon('shield',19)} الرعاية الصحية</h3><p class="lead">${b.health.intro}</p>${pts(b.health.points,'shield')}`;
+  if(t==='specialist')return `<h3 class="sect">${icon('chat',19)} متى يجب التواصل مع مختص؟</h3>
+    <div class="warnbox" style="margin-top:12px"><h4>${icon('warn',18)} تواصل فورًا عند أي مما يلي</h4><ul>${b.specialist.map(s=>`<li>${icon('warn',15)}<span>${s}</span></li>`).join('')}</ul></div>`;
+  if(t==='warnings')return `<div class="warnbox"><h4>${icon('warn',19)} تحذيرات وقانون — ${b.name}</h4><ul>${b.warnings.map(w=>`<li>${icon('warn',15)}<span>${w}</span></li>`).join('')}</ul>
+    <p style="margin-top:12px;font-size:.88rem">${b.legal}</p></div>`;
+  return '';
+}
+
+function viewTrain(id){
+  const b=(id&&getBird(id))||getBird(store('dlt-last'));
+  if(!b)return `<section class="wrap sec anim"><h1 style="color:var(--green);font-size:2rem">تدريب طيرك</h1>
+    <p class="lead" style="margin-top:6px">اختر طائرًا لعرض خطة تدريبه المخصصة — كل نوع له مسار مختلف تمامًا.</p>
+    <div class="grid stagger" style="padding-top:26px">${DB.map(birdCard).join('')}</div></section>`;
+  const isRap=b.cat==='raptors';
+  return `<section class="wrap sec anim">
+    <div class="backrow"><button class="backbtn" data-go="#/">${icon('back',16)} عودة للرئيسية</button></div>
+    <h1 style="color:var(--green);font-size:clamp(1.8rem,4vw,2.5rem);margin-top:8px">${icon('award',30)} تدريب ${b.name}</h1>
+    <p class="lead" style="margin-top:4px">${isRap?'الجوارح تُدرَّب عمليًا داخل إطار مرخص — هذه معلومات توعوية حول مسارها.':'خطة تدريب مخصصة تناسب طبيعة '+b.name+' — تدرّج بالخطوات ولا تستعجل.'}</p>
+    <div style="margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px">${trainingHTML(b)}</div>
+    <div style="margin-top:14px"><button class="btn ghost" data-go="#/bird/${b.id}">${icon('feather',17)} افتح الصفحة الكاملة لـ${b.name}</button></div>
+  </section>`;
+}
+
+/* ---------- 8) البحث ---------- */
+const sOv=$('#searchOv');
+function openSearch(){sOv.classList.add('open');$('#gSearch').value='';renderSearch('');setTimeout(()=>$('#gSearch').focus(),50)}
+function closeSearch(){sOv.classList.remove('open')}
+function renderSearch(q){
+  q=q.trim();
+  const res=q?DB.filter(b=>b.name.includes(q)||b.desc.includes(q)):DB;
+  $('#searchRes').innerHTML=res.length?res.map(b=>`<button class="sres" data-go="#/bird/${b.id}">${art(b)}<div><b>${b.name}</b><small>${b.desc.slice(0,60)}…</small></div><span class="cat-tag ${b.cat==='raptors'?'r':''}">${CAT_NAME[b.cat]}</span></button>`).join('')
+    :`<div class="snone">${icon('search',26)}<br>لا نتائج لـ«${q}» — جرّب اسمًا آخر مثل «كوكتيل» أو «صقر»</div>`;
+}
+ $('#gSearch').addEventListener('input',e=>renderSearch(e.target.value));
+sOv.addEventListener('click',e=>{if(e.target===sOv)closeSearch()});
+
+/* ---------- 9) المساعد الذكي ---------- */
+const AS={data:{},started:false};
+const aMsgs=$('#asstMsgs'),aChips=$('#asstChips');
+ $('#fab').innerHTML=art(getBird('cockatiel'))+'<span class="dot"></span>';
+ $('#asstAv').innerHTML=art(getBird('cockatiel'));
+document.querySelector('[data-asst-reset]').innerHTML=icon('refresh',17);
+document.querySelector('[data-asst-close]').innerHTML=icon('close',17);
+document.querySelector('.asst-form button').innerHTML=icon('send',18);
+
+function scrollAsst(){aMsgs.scrollTop=aMsgs.scrollHeight}
+function botSay(html){aMsgs.insertAdjacentHTML('beforeend',`<div class="msg bot">${html}</div>`);scrollAsst()}
+function userSay(t){aMsgs.insertAdjacentHTML('beforeend',`<div class="msg me">${t}</div>`);scrollAsst()}
+function botTyping(cb,delay=700){
+  aMsgs.insertAdjacentHTML('beforeend','<div class="msg bot typing" id="tp"><span></span><span></span><span></span></div>');scrollAsst();
+  setTimeout(()=>{$('#tp')?.remove();cb()},delay);
+}
+function openAsst(){
+  $('#asst').classList.add('open');
+  if(!AS.started){AS.started=true;const my=getBird(MY()[0]);
+    botSay(my?`أهلًا! سمعت أن عندك <b>${my.name}</b> — أخبرني عنه وأعطيك إرشادات تناسبه.`:`أهلًا! أنا <b>مساعد دلع طيرك</b> — اكتب عن طائرك مثل: <i>«عندي كوكتيل عمره 4 شهور ومش خايف»</i>، أو أجب على أسئلتي خطوة بخطوة.`);
+    botTyping(askNext,900);
+  }
+}
+function closeAsst(){$('#asst').classList.remove('open')}
+function resetAsst(){AS.data={};aMsgs.innerHTML='';aChips.innerHTML='';botSay('نبدأ من جديد — حدثني عن طائرك أو أجب على أسئلتي.');botTyping(askNext,800)}
+
+function chips(list,key){aChips.innerHTML=list.map((c,i)=>`<button class="chip" data-key="${key}" data-i="${i}">${c}</button>`).join('')}
+function askNext(){
+  const d=AS.data;
+  if(!d.bird){botSay('أولًا: <b>ما نوع طائرك؟</b>');chips(DB.map(b=>b.name),'bird');return}
+  const b=getBird(d.bird);
+  if(d.age==null){botSay(`جميل! <b>${b.name}</b> — <b>كم عمره تقريبًا؟</b>`);chips(b.age.stages?b.age.stages.map(s=>s.label):AGE_LABELS,'age');return}
+  if(d.eats==null){botSay('<b>هل يأكل من الصحن بنفسه؟</b> هذه أهم علامة فطام.');chips(['نعم يأكل بنفسه','لا، لا يأكل بنفسه','لم ألاحظ بعد'],'eats');return}
+  if(d.fear==null){botSay('<b>هل يخاف من اليد؟</b> يبتعد ويرتعب عندما تقرّب يدك؟');chips(['نعم يخاف من اليد','لا، ليس خائفًا','لست متأكدًا'],'fear');return}
+  if(d.since==null){botSay('<b>منذ متى هو عندك؟</b>');chips(['منذ يوم أو يومين','منذ أسبوع تقريبًا','منذ أكثر من شهر','منذ فترة طويلة'],'since');return}
+  showResult();
+}
+const CLOSES=['تذكّر دائمًا: اختلاف الطيور طبيعي تمامًا — لكل طائر شخصيته، والتدريب يكون خطوة صغيرة كل يوم.','واختلاف الطيور طبيعي جدًا — ما ينجح مع طائر قد يحتاج وقتًا أطول مع آخر، والتدرّج هو السر دائمًا.','وأخيرًا: كل طائر شخصية مستقلة — قارن تقدمه بنفسه بالأمس لا بغيره، وسيصل بإذن الله.'];
+function showResult(){
+  aChips.innerHTML='';
+  const d=AS.data,b=getBird(d.bird);
+  const a=assess(b,d.age,d.eats);
+  let html=`<b>${b.name}</b> — النتيجة:<br><b>${a.title}</b><br>${a.text}`;
+  if(b.cat==='raptors'){
+    html+='<br><br>وياخذ الجوارح بعين مختلفة تمامًا: أي تدريب أو تعويد عملي يتم مع صقّار أو مختص مرخص حصرًا — دورك هنا هو الرعاية الآمنة والمراقبة.';
+  }else{
+    if(d.eats==='unsure')html+='<br><br>لحظة الأكل تكشف كل شيء: ضع الطعام في صحن واسحب يدك بهدوء وراقب — أسرع طريقة لمعرفة مرحلته الحقيقية.';
+    if(d.fear===true)html+=`<br><br>خوف اليد طبيعي وشائع: ابدأ بخطوة «${b.taming.steps[0]}» ثم تدرّج بالخطوات الباقية — ولا تجبره أبدًا على النزول ليدك.`;
+    else if(d.fear===false)html+='<br><br>أنت في وضع ممتاز! طائرك لا يخاف منك — ابدأ تعويد اليد تدريجيًا: مكافأة من طرف القفص، ثم يد ثابتة تحت الصدر. التدرّج هو السر.';
+    else html+='<br><br>راقب أولاً: إن يبتعد عند اقتراب يدك ويرتفع ريشه فهو خائف مؤقتًا — تعامل معه كخائف حتى تتأكد.';
+    const S=['منذ يوم أو يومين؟ أعطه 3–5 أيام هدوء للتأقلم قبل أي تدريب — الانطباع الأول يبقى عنده طويلًا.','منذ أسبوع؟ وقت مثالي لبدء الجلوس القريب والكلام الهادئ، ثم الانتقال للمكافآت.','منذ أكثر من شهر؟ أنهيت مرحلة التأقلم — وسّع التدريب خطوة جديدة كل أسبوع.','علاقة قديمة بينكما — حافظ على الروتين ووسّع تحديات التدريب ببطء وثبات.'];
+    if(d.since!=null)html+='<br><br>'+S[d.since];
+    html+='<br><br>'+CLOSES[Math.floor(Math.random()*CLOSES.length)];
+  }
+  html+=`<br><button class="btn" data-go="#/bird/${b.id}">${icon('feather',15)} صفحة ${b.name} الكاملة</button><button class="btn ghost" data-asst-reset>${icon('refresh',15)} من جديد</button>`;
+  botTyping(()=>botSay(html),1100);
+}
+
+/* المحلل النصي الحر */
+function parseText(t){
+  const d={};
+  const KW=[['cockatiel',['كوكتيل','كوكاتيل','كوكتييل']],['budgie',['بادجي','بودجي','بادج','باديج']],['parrot',['ببغاء','الافريقي','الافريقى','الرمادي']],['lovebird',['حب','الحب']],['canary',['كناري','الكنار']],['pigeon',['حمام','يمام','زغلول']],['finch',['عصفور','عصافير','فينش','زيبرا']],['owl',['بومة','القرنة','قرنة']],['falcon',['صقر','شاهين','حر صقر']],['eagle',['عقاب','نسر']]];
+  for(const[id,ws]of KW)if(ws.some(w=>t.includes(w))){d.bird=id;break}
+  const m=t.match(/(\d+)\s*(يوم|أيام|أسبوع|اسبوع|أسابيع|اسابيع|شهر|شهور|أشهر|اشهر|سنة|سنوات|عام)/);
+  if(m){let v=+m[1];const u=m[2];
+    if(/يوم/.test(u))v/=30;else if(/أسبوع|اسبوع|أسابيع|اسابيع/.test(u))v/=4.3;else if(/سنة|سنوات|عام/.test(u))v*=12;
+    d.age=v;}
+  if(/فرخ|بيضة/.test(t))d.age=0.5;
+  if(/مفطوم|فطام/.test(t)){d.eats='yes';d.age=Math.max(d.age||0,12)}
+  if(/مش خايف|مو خايف|ما يخاف|لا يخاف|مش يخاف|مرتاح مني|مرتاح منى/.test(t))d.fear=false;
+  else if(/خايف|يخاف|خوف|هرب مني|هرب منى/.test(t))d.fear=true;
+  if(/ياكل بنفس|يأكل بنفس|ياكل لوحد|يأكل وحده|ياكل وحده/.test(t))d.eats='yes';
+  else if(/لا يأكل|ما يأكل|ما ياكل|مش يأكل|مش ياكل/.test(t))d.eats='no';
+  if(/منذ|من (يوم|أسبوع|اسبوع|شهر)/.test(t)){if(/يوم/.test(t))d.since=0;else if(/أسبوع|اسبوع/.test(t))d.since=1;else if(/شهر/.test(t))d.since=2;else d.since=3}
+  return d;
+}
+
+function toAgeIdx(b,months){
+  if(b.age.stages){if(months<2)return 0;if(months<8)return 1;return 2}
+  const m=b.age.mids;let idx=0;
+  for(let i=0;i<m.length;i++)if(months>=m[i]-(i?m[i]-m[i-1]:0)/2)idx=i;
+  return idx;
+}
+
+ $('#asstForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const inp=$('#asstInput'),t=inp.value.trim();
+  if(!t)return;inp.value='';userSay(t);
+  const p=parseText(t);
+  Object.assign(AS.data,p);
+  const need=['bird','age','eats','fear','since'].filter(k=>AS.data[k]==null);
+  botTyping(()=>{
+    if(need.length===0){showResult();return}
+    const q={bird:'لم أتأكد من نوع الطائر — <b>ما هو نوعه؟</b>',age:'<b>كم عمره تقريبًا؟</b>',eats:'<b>وهل يأكل من الصحن بنفسه؟</b>',fear:'<b>وهل يخاف من اليد؟</b>',since:'<b>ومنذ متى هو عندك؟</b>'}[need[0]];
+    botSay(q);askNext();
+  },800);
+});
+aChips.addEventListener('click',e=>{
+  const c=e.target.closest('[data-key]');if(!c)return;
+  const key=c.dataset.key,i=+c.dataset.i;
+  userSay(c.textContent);
+  if(key==='bird')AS.data.bird=DB[i].id;
+  else if(key==='eats')AS.data.eats=['yes','no','unsure'][i];
+  else if(key==='fear')AS.data.fear=[true,false,null][i];
+  else AS.data[key]=i;
+  aChips.innerHTML='';
+  botTyping(askNext,650);
+});
+
+/* ---------- 10) الأحداث العامة ---------- */
+ $('#menuBtn').innerHTML=icon('menu',20);
+ $('#mobileNav').innerHTML='<a href="#/">الرئيسية</a><a href="#/cat/pets">الطيور الأليفة</a><a href="#/cat/raptors">الجوارح</a><a href="#/train">تدريب طيرك</a>';
+ $('#menuBtn').onclick=()=>{const n=$('#mobileNav');n.style.display=n.style.display==='flex'?'none':'flex'};
+ $('#mobileNav').addEventListener('click',()=>$('#mobileNav').style.display='none');
+document.querySelector('[data-search-open]').innerHTML=icon('search',20);
+document.querySelector('[data-search-open]').onclick=openSearch;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeAsst()}});
+
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const goEl=t.closest('[data-go]');
+  if(goEl){closeSearch();closeAsst();go(goEl.dataset.go);return}
+  if(t.closest('[data-search-open]')){openSearch();return}
+  if(t.closest('[data-asst-toggle]')){$('#asst').classList.contains('open')?closeAsst():openAsst();return}
+  if(t.closest('[data-asst-close]')){closeAsst();return}
+  if(t.closest('[data-asst-reset]')){resetAsst();return}
+  const tab=t.closest('[data-tab]');
+  if(tab){state.uiTab[state.ui.birdId]=tab.dataset.tab;
+    document.querySelectorAll('#tabsRow .tab').forEach(x=>x.classList.toggle('on',x===tab));
+    const body=$('#tabBody');body.innerHTML=tabHTML(getBird(state.ui.birdId));body.style.animation='none';body.offsetHeight;body.style.animation='';return}
+  const age=t.closest('[data-age]');if(age){state.ui.age=+age.dataset.age;refreshQuiz();return}
+  const eats=t.closest('[data-eats]');if(eats){state.ui.eats=eats.dataset.eats;refreshQuiz();return}
+  const st=t.closest('[data-step]');if(st){toggleStep(+st.dataset.step);return}
+  const rs=t.closest('[data-reset-steps]');if(rs){const all=store('dlt-taming')||{};all[rs.dataset.resetSteps]=[];store('dlt-taming',all);$('#tabBody').innerHTML=tabHTML(getBird(state.ui.birdId));toast('تم إعادة ضبط خطوات التعوّد','refresh');return}
+  const star=t.closest('[data-star]');if(star){
+    const id=star.dataset.star,my=MY(),i=my.indexOf(id);
+    if(i>=0){my.splice(i,1);toast('أُزيل من قائمة طيورك','star')}else{my.push(id);toast('أصبح طائرك المحفوظ — سيتذكره المساعد','star')}
+    store('dlt-my',my);render();return}
+  if(t.closest('[data-back]')){history.length>1?history.back():go('#/')}
+});
+
+window.addEventListener('hashchange',render);
+
+/* الشعار */
+ $('#logoSlot').innerHTML=art({art:{...CANARY_ART},colors:{}},true);
+
+render();
+</script>
+</body>
+</html>
